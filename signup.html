@@ -3,22 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up for Piann</title>
+    <title>Join Piann - Connect Your Network</title>
     <style>
         body { font-family: Helvetica, Arial, sans-serif; background-color: #f0f2f5; display: flex; flex-direction: column; align-items: center; padding-top: 40px; margin: 0; }
         .logo { color: #1877f2; font-size: 45px; font-weight: bold; margin-bottom: 20px; text-decoration: none; }
-        .reg-card { background: white; width: 432px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1), 0 8px 16px rgba(0,0,0,0.1); padding: 16px; box-sizing: border-box; }
+        .reg-card { background: white; width: 432px; border-radius: 8px; box-shadow: 0 8px 16px rgba(0,0,0,0.1); padding: 16px; box-sizing: border-box; }
         h2 { margin: 0; font-size: 25px; color: #1c1e21; }
         p.subtitle { color: #606770; font-size: 15px; margin: 4px 0 16px 0; }
         .divider { border-bottom: 1px solid #dadde1; margin: 0 -16px 16px -16px; }
-        .row { display: flex; gap: 10px; margin-bottom: 10px; }
-        input { flex: 1; padding: 11px; background: #f5f6f7; border: 1px solid #ccd0d5; border-radius: 5px; font-size: 15px; outline: none; }
-        input:focus { border-color: #1877f2; }
-        label { display: block; font-size: 12px; color: #606770; margin-top: 10px; margin-bottom: 5px; font-weight: bold; }
-        select { flex: 1; padding: 8px; border: 1px solid #ccd0d5; border-radius: 4px; background: white; }
-        .gender-box { flex: 1; padding: 8px; border: 1px solid #ccd0d5; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; font-size: 15px; background: white; }
-        .terms { font-size: 11px; color: #777; margin: 15px 0; text-align: center; line-height: 15px; }
-        .btn-submit { background: #00a400; color: white; border: none; width: 194px; padding: 10px; font-size: 18px; font-weight: bold; border-radius: 6px; cursor: pointer; display: block; margin: 20px auto; }
+        .row { display: flex; gap: 10px; margin-bottom: 12px; }
+        input, select { flex: 1; padding: 11px; background: #f5f6f7; border: 1px solid #ccd0d5; border-radius: 5px; font-size: 15px; outline: none; }
+        input:focus { border-color: #1877f2; background: white; }
+        label { display: block; font-size: 13px; color: #1c1e21; margin-top: 10px; margin-bottom: 5px; font-weight: bold; }
+        .btn-submit { background: #00a400; color: white; border: none; width: 100%; padding: 12px; font-size: 18px; font-weight: bold; border-radius: 6px; cursor: pointer; margin-top: 20px; }
         .btn-submit:hover { background: #008a00; }
     </style>
 </head>
@@ -27,43 +24,42 @@
     <a href="index.html" class="logo">Piann</a>
 
     <div class="reg-card">
-        <h2>Sign Up</h2>
-        <p class="subtitle">It's quick and easy (Hızlı ve kolaydır).</p>
+        <h2>Create Your Profile</h2>
+        <p class="subtitle">Join the map and help your circle (Çevrene yardım et).</p>
         <div class="divider"></div>
         
+        <label>Personal Info (Kişisel Bilgiler)</label>
         <div class="row">
-            <input type="text" placeholder="First name (Ad)">
-            <input type="text" placeholder="Surname (Soyad)">
+            <input type="text" placeholder="First name">
+            <input type="text" placeholder="Surname">
         </div>
 
-        <input type="text" placeholder="Mobile number or email address" style="width: 100%; box-sizing: border-box; margin-bottom: 10px;">
-        <input type="password" placeholder="New password (Yeni şifre)" style="width: 100%; box-sizing: border-box; margin-bottom: 10px;">
-        
-        <label>Birthday (Doğum Günü)</label>
+        <label>Professional Info (İş Bilgileri)</label>
+        <div class="row">
+            <input type="text" placeholder="Company (e.g. Fibertex)">
+            <input type="text" placeholder="Job Title / Profession (Meslek)">
+        </div>
+
+        <label>Location (Haritadaki Konumun)</label>
         <div class="row">
             <select>
-                <option>12</option>
-                </select>
-            <select>
-                <option>May</option>
-                </select>
-            <select>
-                <option>2026</option>
-                </select>
+                <option value="">Select City (Şehir Seç)</option>
+                <option>Istanbul</option>
+                <option>Ankara</option>
+                <option>Tekirdağ</option>
+            </select>
+            <input type="text" placeholder="District (İlçe)">
         </div>
+
+        <label>Account (Hesap)</label>
+        <input type="text" placeholder="Mobile number or email" style="width: 100%; box-sizing: border-box; margin-bottom: 10px;">
+        <input type="password" placeholder="New password" style="width: 100%; box-sizing: border-box;">
         
-        <label>Gender (Cinsiyet)</label>
-        <div class="row">
-            <div class="gender-box">Female (Kadın) <input type="radio" name="gender"></div>
-            <div class="gender-box">Male (Erkek) <input type="radio" name="gender"></div>
-            <div class="gender-box">Custom <input type="radio" name="gender"></div>
-        </div>
-        
-        <p class="terms">
-            By clicking Sign Up, you agree to our Terms, Data Policy and Cookie Policy. You may receive SMS notifications from us.
+        <p style="font-size: 11px; color: #777; text-align: center; margin-top: 15px;">
+            By joining, you agree to share your professional location on the map.
         </p>
         
-        <button class="btn-submit">Sign Up</button>
+        <button class="btn-submit" onclick="location.href='harita.html'">Sign Up & View Map</button>
     </div>
 
 </body>
