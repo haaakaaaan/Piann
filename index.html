@@ -1,24 +1,19 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Piann - Giriş Yap veya Kaydol</title>
+    <title>Piann - Log In or Sign Up</title>
     <style>
         body { font-family: Helvetica, Arial, sans-serif; background-color: #f0f2f5; margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; }
         .container { display: flex; width: 980px; justify-content: space-between; align-items: center; padding-bottom: 100px; }
-        
-        /* Sol Taraf: Tanıtım */
         .left-content { width: 500px; padding-right: 32px; }
         .left-content h1 { color: #1877f2; font-size: 60px; margin: 0; letter-spacing: -2px; }
         .left-content p { font-size: 28px; line-height: 32px; color: #1c1e21; margin-top: 0; }
-
-        /* Sağ Taraf: Giriş Kutusu */
         .right-content { width: 396px; }
-        .login-card { background: white; border: none; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1); padding: 16px; text-align: center; }
+        .login-card { background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1); padding: 16px; text-align: center; }
         input { width: 92%; padding: 14px 16px; margin-bottom: 12px; border: 1px solid #dddfe2; border-radius: 6px; font-size: 17px; outline: none; }
-        input:focus { border-color: #1877f2; box-shadow: 0 0 0 2px #e7f3ff; }
-        .btn-login { width: 100%; background-color: #1877f2; border: none; border-radius: 6px; color: white; font-size: 20px; font-weight: bold; padding: 12px; cursor: pointer; margin-top: 4px; }
+        .btn-login { width: 100%; background-color: #1877f2; border: none; border-radius: 6px; color: white; font-size: 20px; font-weight: bold; padding: 12px; cursor: pointer; }
         .forgot-pass { display: block; color: #1877f2; font-size: 14px; text-decoration: none; margin: 16px 0; }
         .divider { border-bottom: 1px solid #dadde1; margin-bottom: 20px; }
         .btn-new-account { background-color: #42b72a; border: none; border-radius: 6px; color: white; font-size: 17px; font-weight: bold; padding: 12px 16px; cursor: pointer; text-decoration: none; display: inline-block; }
@@ -29,16 +24,16 @@
 <div class="container">
     <div class="left-content">
         <h1>Piann</h1>
-        <p>Piann ile çevrendeki gücü keşfet, hayatındaki kapıları tanıdıklarınla beraber aç.</p>
+        <p>Connect with your circle and open doors (kapıları açmak) with the power of your network.</p>
     </div>
     <div class="right-content">
         <div class="login-card">
-            <input type="text" placeholder="E-posta veya Telefon Numarası">
-            <input type="password" placeholder="Şifre">
-            <button class="btn-login">Giriş Yap</button>
-            <a href="#" class="forgot-pass">Şifreni mi unuttun?</a>
+            <input type="text" placeholder="Email or Phone Number">
+            <input type="password" placeholder="Password">
+            <button class="btn-login">Log In</button>
+            <a href="#" class="forgot-pass">Forgotten password?</a>
             <div class="divider"></div>
-            <a href="kayit.html" class="btn-new-account">Yeni Hesap Oluştur</a>
+            <a href="signup.html" class="btn-new-account">Create New Account</a>
         </div>
     </div>
 </div>
