@@ -3,138 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Piann - Log In or Sign Up</title>
+    <title>Piann - Global Professional Network</title>
     <style>
-        /* Tüm sayfayı kapsayan ana ayarlar */
+        /* Arka Plan: Modern ve derinlik katan bir degrade (gradient) */
         body { 
-            font-family: Helvetica, Arial, sans-serif; 
-            background-color: #f0f2f5; 
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            background: radial-gradient(circle at top right, #ffffff, #e7f0fd 50%, #d1e3f8 100%);
             margin: 0; 
             display: flex; 
-            justify-content: center; /* Yatayda tam ortalar */
-            align-items: center;     /* Dikeyde tam ortalar */
+            justify-content: center; 
+            align-items: center; 
             min-height: 100vh; 
-            overflow-x: hidden;      /* Yatay kaydırmayı engeller */
+            overflow-x: hidden;
         }
         
-        /* Ana Konteyner: 2040px genişlik ve otomatik hizalama */
         .container { 
             display: flex; 
             width: 2040px; 
-            max-width: 95%;          /* Ekran küçükse taşma yapmaz */
+            max-width: 95%;
             justify-content: space-between; 
             align-items: center; 
-            margin: 0 auto;          /* Sayfayı her zaman merkezde tutar */
-            gap: 100px;              /* İki içerik arasındaki boşluk */
+            margin: 0 auto;
+            gap: 80px;
         }
         
-        /* Sol İçerik: Görselin olduğu devasa alan */
         .left-content { 
             width: 1190px; 
             text-align: left; 
+            animation: fadeIn 1s ease-out; /* Sayfa açılışında hafif bir geçiş */
         }
         
+        /* Yeni Başlık Stili */
         .left-content h1 { 
             color: #1877f2; 
-            font-size: 80px;         /* Devasa başlık */
+            font-size: 90px; 
             margin: 0; 
-            letter-spacing: -3px; 
-            font-weight: bold;
+            letter-spacing: -4px; 
+            font-weight: 800;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
         
+        /* Güçlendirilmiş Slogan */
         .left-content p { 
-            font-size: 32px;         /* Büyük ekran için büyük yazı */
-            line-height: 40px; 
-            color: #1c1e21; 
-            margin-top: 15px; 
-            margin-bottom: 40px; 
-            font-weight: normal; 
+            font-size: 34px; 
+            line-height: 44px; 
+            color: #4b4f56; 
+            margin-top: 20px; 
+            margin-bottom: 50px; 
+            font-weight: 400; 
+            max-width: 900px;
+        }
+
+        .left-content b {
+            color: #1877f2;
+            font-weight: 600;
         }
         
-        /* Dev Görsel Ayarı */
         .left-content img { 
             width: 100%; 
             height: auto;
-            border-radius: 24px;     /* Daha yumuşak köşeler */
-            box-shadow: 0 15px 50px rgba(0,0,0,0.25); 
+            border-radius: 30px; 
+            box-shadow: 0 20px 60px rgba(24, 119, 242, 0.2); /* Mavi tonlu derin gölge */
             display: block; 
+            border: 1px solid rgba(255,255,255,0.5);
         }
 
-        /* Sağ Taraf: Giriş Kartı */
         .right-content { 
-            width: 450px;            /* Kartı da bir tık büyüttük */
+            width: 450px; 
             flex-shrink: 0; 
+            animation: slideIn 0.8s ease-out;
         }
         
+        /* Giriş Kartı: Daha yumuşak ve şeffaf geçişli */
         .login-card { 
-            background: white; 
+            background: rgba(255, 255, 255, 0.95); 
             border: none; 
-            border-radius: 12px; 
-            box-shadow: 0 4px 12px rgba(0, 0, 0, .1), 0 16px 32px rgba(0, 0, 0, .1); 
-            padding: 30px 24px; 
+            border-radius: 16px; 
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05), 0 20px 48px rgba(0, 0, 0, 0.05); 
+            padding: 40px 30px; 
             text-align: center; 
-            box-sizing: border-box; 
+            box-sizing: border-box;
+            backdrop-filter: blur(10px); /* Cam efekti */
         }
         
         input { 
             width: 100%; 
-            padding: 18px 16px; 
-            margin-bottom: 15px; 
+            padding: 20px 16px; 
+            margin-bottom: 18px; 
             border: 1px solid #dddfe2; 
-            border-radius: 8px; 
+            border-radius: 10px; 
             font-size: 18px; 
             outline: none; 
             box-sizing: border-box; 
+            transition: all 0.3s;
         }
         
         input:focus { 
             border-color: #1877f2; 
-            box-shadow: 0 0 0 2px #e7f3ff; 
+            box-shadow: 0 0 0 4px rgba(24, 119, 242, 0.1); 
         }
         
         .btn-login { 
             width: 100%; 
             background-color: #1877f2; 
             border: none; 
-            border-radius: 8px; 
+            border-radius: 10px; 
             color: white; 
-            font-size: 22px; 
+            font-size: 24px; 
             font-weight: bold; 
-            padding: 14px; 
+            padding: 16px; 
             cursor: pointer; 
-            margin-top: 5px; 
+            transition: background 0.3s;
         }
         
-        .btn-login:hover { 
-            background-color: #166fe5; 
-        }
+        .btn-login:hover { background-color: #166fe5; }
         
         .forgot-pass { 
             display: block; 
             color: #1877f2; 
             font-size: 16px; 
             text-decoration: none; 
-            margin: 20px 0; 
+            margin: 25px 0; 
         }
+
+        .forgot-pass:hover { text-decoration: underline; }
         
-        .divider { 
-            border-bottom: 1px solid #dadde1; 
-            margin-bottom: 25px; 
-            margin-top: 15px; 
-        }
+        .divider { border-bottom: 1px solid #dadde1; margin-bottom: 30px; }
         
         .btn-new-account { 
             background-color: #42b72a; 
             border: none; 
-            border-radius: 8px; 
+            border-radius: 10px; 
             color: white; 
-            font-size: 18px; 
+            font-size: 20px; 
             font-weight: bold; 
-            padding: 16px 20px; 
+            padding: 18px 24px; 
             cursor: pointer; 
             text-decoration: none; 
             display: inline-block; 
+            transition: background 0.3s;
         }
+        
+        .btn-new-account:hover { background-color: #36a420; }
+
+        /* Animasyonlar */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideIn { from { transform: translateX(30px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
     </style>
 </head>
 <body>
@@ -142,15 +156,15 @@
 <div class="container">
     <div class="left-content">
         <h1>Piann</h1>
-        <p>Connect with your circle and open doors (kapıları açmak) with the power of your network.</p>
-        <img src="world-map.png" alt="Piann Global Network">
+        <p>Your network is your greatest asset. <b>Connect</b> with trusted circles, <b>discover</b> professional opportunities, and <b>open doors</b> (kapıları açmak) globally.</p>
+        <img src="world-map.png" alt="Piann Network Vision">
     </div>
 
     <div class="right-content">
         <div class="login-card">
             <input type="text" placeholder="Email or Phone Number">
             <input type="password" placeholder="Password">
-            <button class="btn-login">Log In (Giriş Yap)</button>
+            <button class="btn-login">Log In</button>
             <a href="#" class="forgot-pass">Forgotten password?</a>
             <div class="divider"></div>
             <a href="signup.html" class="btn-new-account">Create New Account</a>
