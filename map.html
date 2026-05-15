@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piann - Explore the Network</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; overflow: hidden; }
+        
+        /* Harita Ekranın Tamamını Kaplasın */
+        #map { height: 100vh; width: 100vw; background: #eef2f7; }
+
+        /* Arama Çubuğu (Üstte Asılı) */
+        .search-container {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            width: 500px;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+        }
+
+        .search-container input {
+            border: none;
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+            outline: none;
+            border-radius: 50px;
+        }
+
+        /* Parlayan Nokta (Marker) Efekti */
+        .glow-marker {
+            width: 15px;
+            height: 15px;
+            background-color: #1877f2;
+            border: 2px solid white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #1877f2, 0 0 20px #1877f2;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.7; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Profil Bilgi Penceresi (Popup) */
+        .leaflet-popup-content-wrapper {
+            border-radius: 12px;
+            padding: 5px;
+        }
+        .profile-popup h3 { margin: 0; color: #1877f2; }
+        .profile-popup p { margin: 5px 0; color: #606770; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<div class="search-container">
+    <input type="text" placeholder="Search a job, city or a name (Arama yap)...">
+</div>
+
+<div id="map"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+    // 1. Haritayı Başlat (Türkiye Odaklı)
+    var map = L.map('map').setView([39.0, 35.0], 6);
+
+    // 2. Harita Zeminini Yükle (Modern ve Sade)
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; Piann Network'
+    }).addTo(map);
+
+    // 3. Örnek Parlayan Noktalar (Daha sonra Firebase'den gelecek)
+    // Örn: İstanbul'da bir mühendis
+    var istanbulMarker = L.divIcon({ className: 'glow-marker' });
+    L.marker([41.0082, 28.9784], {icon: istanbulMarker}).addTo(map)
+        .bindPopup(`
+            <div class="profile-popup">
+                <h3>Hakan</h3>
+                <p>Üretim Mühendisi</p>
+                <p>Fibertex - Çerkezköy</p>
+                <button style="width:100%; background:#1877f2; color:white; border:none; border-radius:5px; padding:5px; cursor:pointer;">Bağlantı Kur</button>
+            </div>
+        `);
+
+    // Örn: Tekirdağ'da başka bir nokta
+    L.marker([41.1, 27.5], {icon: istanbulMarker}).addTo(map)
+        .bindPopup('<div class="profile-popup"><h3>Ekrem Bey</h3><p>Emlak Danışmanı</p></div>');
+
+</script>
+
+</body>
+</html>
