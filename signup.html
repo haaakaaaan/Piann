@@ -3,85 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Piann - Join the Network</title>
+    <title>Join Piann - Professional Network</title>
     <style>
         body { 
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
-            background: radial-gradient(circle at top right, #ffffff, #e7f0fd 50%, #d1e3f8 100%);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; 
+            background-color: #f3f2ef; /* LinkedIn gri arka planı */
             margin: 0; 
             display: flex; 
-            justify-content: center; 
+            flex-direction: column;
             align-items: center; 
             min-height: 100vh; 
         }
 
-        .signup-container {
-            width: 450px;
+        .header { margin: 40px 0; }
+        .header h1 { color: #0a66c2; font-size: 32px; font-weight: 700; margin: 0; }
+
+        .signup-card {
             background: white;
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            padding: 32px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            width: 400px;
             text-align: center;
         }
 
-        h2 { color: #1877f2; font-size: 32px; margin-bottom: 10px; }
-        p { color: #606770; font-size: 18px; margin-bottom: 30px; }
+        /* Aşamalar (Steps) */
+        .step { display: none; }
+        .step.active { display: block; animation: fadeIn 0.5s; }
 
-        input, select {
+        h2 { font-size: 24px; color: rgba(0,0,0,0.9); margin-bottom: 8px; }
+        p { color: rgba(0,0,0,0.6); font-size: 16px; margin-bottom: 24px; }
+
+        input {
             width: 100%;
-            padding: 15px;
-            margin-bottom: 15px;
-            border: 1px solid #dddfe2;
-            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(0,0,0,0.6);
+            border-radius: 4px;
             font-size: 16px;
             box-sizing: border-box;
-            outline: none;
         }
 
-        input:focus { border-color: #1877f2; box-shadow: 0 0 0 2px #e7f3ff; }
-
-        .btn-submit {
+        .btn-next {
             width: 100%;
-            background-color: #42b72a;
+            background-color: #0a66c2;
             color: white;
             border: none;
-            border-radius: 8px;
-            padding: 16px;
-            font-size: 20px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .btn-submit:hover { background-color: #36a420; }
-
-        .login-link {
-            display: block;
-            margin-top: 20px;
-            color: #1877f2;
-            text-decoration: none;
+            border-radius: 24px; /* LinkedIn'in yuvarlak butonu */
+            padding: 12px;
             font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
         }
+
+        .btn-next:hover { background-color: #004182; }
+
+        .progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #e0e0e0;
+            margin-bottom: 20px;
+            border-radius: 2px;
+        }
+        .progress-fill {
+            height: 100%;
+            background: #0a66c2;
+            width: 33%;
+            transition: 0.3s;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
-<div class="signup-container">
-    <h2>Yeni Hesap Oluştur</h2>
-    <p>Hızlı ve kolaydır (It's quick and easy).</p>
-    
-    <form>
-        <input type="text" placeholder="Adınız">
-        <input type="text" placeholder="Soyadınız">
-        <input type="email" placeholder="E-posta veya Cep Telefonu">
-        <input type="text" placeholder="Mesleğiniz (Örn: Mühendis, Avukat)">
-        <input type="text" placeholder="Şehir">
-        
-        <button type="button" class="btn-submit" onclick="location.href='map.html'">Kaydol ve Haritaya Git</button>
-    </form>
-
-    <a href="index.html" class="login-link">Zaten bir hesabın var mı?</a>
+<div class="header">
+    <h1>Piann</h1>
 </div>
+
+<div class="signup-card">
+    <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+
+    <div class="step active" id="step1">
+        <h2>Adınız ve Soyadınız</h2>
+        <p>Piann topluluğunda gerçek kimliğinle yer al.</p>
+        <input type="text" id="name" placeholder="Adınız">
+        <input type="text" id="surname" placeholder="Soyadınız">
+        <button class="btn-next" onclick="nextStep(2)">Devam Et</button>
+    </div>
+
+    <div class="step" id="step2">
+        <h2>Ne iş yapıyorsun?</h2>
+        <p>En son çalıştığın şirket ve pozisyonun nedir?</p>
+        <input type="text" id="job" placeholder="Mesleğin (Örn: Üretim Mühendisi)">
+        <input type="text" id="company" placeholder="Şirket (Örn: Fibertex)">
+        <button class="btn-next" onclick="nextStep(3)">Devam Et</button>
+    </div>
+
+    <div class="step" id="step3">
+        <h2>Neredesin?</h2>
+        <p>Ağındaki insanlara konumunu göster.</p>
+        <input type="text" id="city" placeholder="Şehir (Örn: Tekirdağ)">
+        <button class="btn-next" onclick="finishSignup()">Kaydı Tamamla ve Haritaya Git</button>
+    </div>
+</div>
+
+<script>
+    function nextStep(step) {
+        // Tüm adımları gizle
+        document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+        // Hedef adımı göster
+        document.getElementById('step' + step).classList.add('active');
+        // İlerleme çubuğunu güncelle
+        document.getElementById('progress').style.width = (step * 33.3) + '%';
+    }
+
+    function finishSignup() {
+        // Şimdilik sadece haritaya yönlendiriyoruz, Firebase bağlantısını sonraki adımda yapacağız.
+        window.location.href = 'map.html';
+    }
+</script>
 
 </body>
 </html>
