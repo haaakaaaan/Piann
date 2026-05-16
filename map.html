@@ -3,15 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Piann - Explore the Network</title>
+    <title>Piann - Interactive Network Map</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
         body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; overflow: hidden; }
-        
-        /* Harita Ekranın Tamamını Kaplasın */
-        #map { height: 100vh; width: 100vw; background: #eef2f7; }
+        #map { height: 100vh; width: 100vw; background: #f4f6f9; }
 
-        /* Arama Çubuğu */
         .search-container {
             position: absolute;
             top: 20px;
@@ -23,149 +20,137 @@
             padding: 10px 20px;
             border-radius: 50px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            display: flex;
-            align-items: center;
         }
-
         .search-container input {
             border: none;
             width: 100%;
             padding: 10px;
             font-size: 18px;
             outline: none;
-            border-radius: 50px;
         }
 
-        /* Parlayan Nokta (Marker) Efekti */
+        /* Bilgi Kutusu (Sağ Üstteki LinkedIn/Sahibinden Tarzı Panel) */
+        .info-box {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+
         .glow-marker {
-            width: 15px;
-            height: 15px;
-            background-color: #1877f2;
+            width: 14px;
+            height: 14px;
+            background-color: #ff4757; /* İlanlar veya kullanıcılar için kırmızı parlayan nokta */
             border: 2px solid white;
             border-radius: 50%;
-            box-shadow: 0 0 10px #1877f2, 0 0 20px #1877f2;
+            box-shadow: 0 0 10px #ff4757;
             animation: pulse 2s infinite;
         }
-
         @keyframes pulse {
             0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.5); opacity: 0.7; }
+            50% { transform: scale(1.4); opacity: 0.8; }
             100% { transform: scale(1); opacity: 1; }
         }
-
-        /* Profil Bilgi Penceresi (Popup) */
-        .leaflet-popup-content-wrapper {
-            border-radius: 12px;
-            padding: 5px;
-        }
-        .profile-popup h3 { margin: 0; color: #1877f2; }
-        .profile-popup p { margin: 5px 0; color: #606770; font-size: 14px; }
     </style>
 </head>
 <body>
 
 <div class="search-container">
-    <input type="text" placeholder="Search a job, city or a name (Arama yap)...">
+    <input type="text" placeholder="İl, ilçe veya meslek ara...">
 </div>
+
+<div class="info-box" id="infoBox">Haritada bir bölgeye yaklaşın</div>
 
 <div id="map"></div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script>
-    // 1. Haritayı Başlat (İstanbul Odaklı Açılıyor)
-    var map = L.map('map').setView([41.0082, 28.9784], 10);
+    // 1. Haritayı Türkiye merkezli başlatıyoruz
+    var map = L.map('map').setView([39.0, 35.0], 6);
 
-    // 2. Harita Zeminini Yükle (Sade Kurumsal Tarz)
+    // Temiz ve sade alt zemin (CartoDB Light)
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; Piann Network'
+        attribution: '&copy; Piann'
     }).addTo(map);
 
-    // 3. Bölge Bölge/İlçe İlçe Gösterme Fonksiyonu (Görsellerdeki Yapı)
-    // Bu fonksiyon üzerine gelindiğinde rengi parlatır, çekildiğinde eski haline getirir.
-    function style(feature) {
+    var regionLayer;
+
+    // 2. Varsayılan Sınır Çizgisi Stili (Videodaki mavi dumanlı stil)
+    function defaultStyle(feature) {
         return {
             fillColor: '#1877f2',
-            weight: 2,
+            weight: 1.5,
             opacity: 1,
             color: 'white',
             dashArray: '3',
-            fillOpacity: 0.2 /* Arkası hafif şeffaf mavi görünecek */
+            fillOpacity: 0.2
         };
     }
 
+    // 3. Fare Üzerine Gelince Tetiklenen Parlama (Hover efekti)
     function highlightFeature(e) {
         var layer = e.target;
         layer.setStyle({
-            fillColor: '#ffa500', /* Üzerine gelince sarı/turuncu yanacak (Sahibinden tarzı) */
-            weight: 3,
-            color: '#666',
+            fillColor: '#0a66c2', /* LinkedIn Mavisi */
+            weight: 2.5,
+            color: '#fff',
             dashArray: '',
-            fillOpacity: 0.6
+            fillOpacity: 0.4
         });
         layer.bringToFront();
+        
+        // Sağ üstteki bilgi kutusunu güncelle
+        document.getElementById('infoBox').innerText = layer.feature.properties.name || "Bilinmeyen Bölge";
     }
 
-    var geojson;
     function resetHighlight(e) {
-        geojson.resetStyle(e.target);
+        regionLayer.resetStyle(e.target);
+    }
+
+    // 4. Tıklayınca O Bölgeye Doğru Uçuş (Zoom / Yakınlaşma)
+    function zoomToFeature(e) {
+        map.fitBounds(e.target.getBounds());
     }
 
     function onEachFeature(feature, layer) {
         layer.on({
             mouseover: highlightFeature,
-            mouseout: resetHighlight
+            mouseout: resetHighlight,
+            click: zoomToFeature
         });
-        if (feature.properties && feature.properties.name) {
-            layer.bindPopup("<b>" + feature.properties.name + " Bölgesi</b><br>Aktif Piann Kullanıcıları");
-        }
     }
 
-    // Örnek Bir Parçalı Bölge Verisi (Örn: İstanbul Boğazı çevresi için hayali sınır çizgisi)
-    // Gerçek GeoJSON dosyasını Firebase'e geçtiğimizde tam liste olarak bağlayacağız.
-    var dummyRegion = {
-        "type": "FeatureCollection",
-        "features": [
-            {
-                "type": "Feature",
-                "properties": {"name": "İstanbul Avrupa Yakası Merkez"},
-                "geometry": {
-                    "type": "Polygon",
-                    "coordinates": [[
-                        [28.80, 41.10], [29.00, 41.15], [29.05, 41.00], [28.85, 40.95], [28.80, 41.10]
-                    ]]
-                }
-            },
-            {
-                "type": "Feature",
-                "properties": {"name": "İstanbul Anadolu Yakası Merkez"},
-                "geometry": {
-                    "type": "Polygon",
-                    "coordinates": [[
-                        [29.05, 41.00], [29.25, 41.05], [29.30, 40.90], [29.10, 40.85], [29.05, 41.00]
-                    ]]
-                }
-            }
-        ]
-    };
+    // 5. TÜRKİYE TÜM BÖLGE VE İL SINIRLARINI (GEOJSON) DIŞARIDAN ÇEKİYORUZ
+    // İnternet üzerindeki güvenli ve hazır Türkiye harita sınır dosyasını doğrudan yüklüyoruz.
+    // Bu sayede o uydurma dikdörtgenler gidiyor, yerine gerçek harita sınırları geliyor.
+    fetch('https://raw.githubusercontent.com/subat/turkey-geojson/master/admin2.json')
+        .then(response => response.json())
+        .then(data => {
+            regionLayer = L.geoJson(data, {
+                style: defaultStyle,
+                onEachFeature: onEachFeature
+            }).addTo(map);
+        })
+        .catch(err => console.error("Harita sınırları yüklenirken hata oluştu:", err));
 
-    geojson = L.geoJson(dummyRegion, {
-        style: style,
-        onEachFeature: onEachFeature
-    }).addTo(map);
+    // 6. Örnek Birkaç Tane Parlayan Nokta (Örn: Çerkezköy ve İstanbul)
+    var customIcon = L.divIcon({ className: 'glow-marker' });
+    
+    // Çerkezköy koordinatı
+    L.marker([41.2912, 28.0017], {icon: customIcon}).addTo(map)
+        .bindPopup("<b>Hakan</b><br>Üretim Mühendisi<br>Fibertex - Çerkezköy");
 
-
-    // 4. Parlayan Noktalar (Markers)
-    var istanbulMarker = L.divIcon({ className: 'glow-marker' });
-    L.marker([41.0082, 28.9784], {icon: istanbulMarker}).addTo(map)
-        .bindPopup(`
-            <div class="profile-popup">
-                <h3>Hakan</h3>
-                <p>Üretim Mühendisi</p>
-                <p>Fibertex - Çerkezköy</p>
-                <button style="width:100%; background:#1877f2; color:white; border:none; border-radius:5px; padding:5px; cursor:pointer;">Bağlantı Kur</button>
-            </div>
-        `);
+    // İstanbul Merkez koordinatı
+    L.marker([41.0082, 28.9784], {icon: customIcon}).addTo(map)
+        .bindPopup("<b>Ahmet Yılmaz</b><br>Yazılım Geliştirici<br>Piann Merkez");
 </script>
 
 </body>
