@@ -11,7 +11,7 @@
         /* Harita Ekranın Tamamını Kaplasın */
         #map { height: 100vh; width: 100vw; background: #eef2f7; }
 
-        /* Arama Çubuğu (Üstte Asılı) */
+        /* Arama Çubuğu */
         .search-container {
             position: absolute;
             top: 20px;
@@ -73,16 +73,89 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script>
-    // 1. Haritayı Başlat (Türkiye Odaklı)
-    var map = L.map('map').setView([39.0, 35.0], 6);
+    // 1. Haritayı Başlat (İstanbul Odaklı Açılıyor)
+    var map = L.map('map').setView([41.0082, 28.9784], 10);
 
-    // 2. Harita Zeminini Yükle (Modern ve Sade)
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    // 2. Harita Zeminini Yükle (Sade Kurumsal Tarz)
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; Piann Network'
     }).addTo(map);
 
-    // 3. Örnek Parlayan Noktalar (Daha sonra Firebase'den gelecek)
-    // Örn: İstanbul'da bir mühendis
+    // 3. Bölge Bölge/İlçe İlçe Gösterme Fonksiyonu (Görsellerdeki Yapı)
+    // Bu fonksiyon üzerine gelindiğinde rengi parlatır, çekildiğinde eski haline getirir.
+    function style(feature) {
+        return {
+            fillColor: '#1877f2',
+            weight: 2,
+            opacity: 1,
+            color: 'white',
+            dashArray: '3',
+            fillOpacity: 0.2 /* Arkası hafif şeffaf mavi görünecek */
+        };
+    }
+
+    function highlightFeature(e) {
+        var layer = e.target;
+        layer.setStyle({
+            fillColor: '#ffa500', /* Üzerine gelince sarı/turuncu yanacak (Sahibinden tarzı) */
+            weight: 3,
+            color: '#666',
+            dashArray: '',
+            fillOpacity: 0.6
+        });
+        layer.bringToFront();
+    }
+
+    var geojson;
+    function resetHighlight(e) {
+        geojson.resetStyle(e.target);
+    }
+
+    function onEachFeature(feature, layer) {
+        layer.on({
+            mouseover: highlightFeature,
+            mouseout: resetHighlight
+        });
+        if (feature.properties && feature.properties.name) {
+            layer.bindPopup("<b>" + feature.properties.name + " Bölgesi</b><br>Aktif Piann Kullanıcıları");
+        }
+    }
+
+    // Örnek Bir Parçalı Bölge Verisi (Örn: İstanbul Boğazı çevresi için hayali sınır çizgisi)
+    // Gerçek GeoJSON dosyasını Firebase'e geçtiğimizde tam liste olarak bağlayacağız.
+    var dummyRegion = {
+        "type": "FeatureCollection",
+        "features": [
+            {
+                "type": "Feature",
+                "properties": {"name": "İstanbul Avrupa Yakası Merkez"},
+                "geometry": {
+                    "type": "Polygon",
+                    "coordinates": [[
+                        [28.80, 41.10], [29.00, 41.15], [29.05, 41.00], [28.85, 40.95], [28.80, 41.10]
+                    ]]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {"name": "İstanbul Anadolu Yakası Merkez"},
+                "geometry": {
+                    "type": "Polygon",
+                    "coordinates": [[
+                        [29.05, 41.00], [29.25, 41.05], [29.30, 40.90], [29.10, 40.85], [29.05, 41.00]
+                    ]]
+                }
+            }
+        ]
+    };
+
+    geojson = L.geoJson(dummyRegion, {
+        style: style,
+        onEachFeature: onEachFeature
+    }).addTo(map);
+
+
+    // 4. Parlayan Noktalar (Markers)
     var istanbulMarker = L.divIcon({ className: 'glow-marker' });
     L.marker([41.0082, 28.9784], {icon: istanbulMarker}).addTo(map)
         .bindPopup(`
@@ -93,11 +166,6 @@
                 <button style="width:100%; background:#1877f2; color:white; border:none; border-radius:5px; padding:5px; cursor:pointer;">Bağlantı Kur</button>
             </div>
         `);
-
-    // Örn: Tekirdağ'da başka bir nokta
-    L.marker([41.1, 27.5], {icon: istanbulMarker}).addTo(map)
-        .bindPopup('<div class="profile-popup"><h3>Ekrem Bey</h3><p>Emlak Danışmanı</p></div>');
-
 </script>
 
 </body>
