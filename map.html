@@ -65,7 +65,7 @@
     <input type="text" placeholder="İl, ilçe veya meslek ara...">
 </div>
 
-<div class="info-box" id="infoBox">Bölgelerin üzerine gelin</div>
+<div class="info-box" id="infoBox">İncelemek istediğiniz bölgeye tıklayın</div>
 
 <div id="map"></div>
 
@@ -75,11 +75,12 @@
     // 1. Haritayı Türkiye merkezli başlatıyoruz
     var map = L.map('map').setView([39.0, 35.0], 6);
 
+    // Temiz, kurumsal ve kasmayan harita zemini
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; Piann'
     }).addTo(map);
 
-    // 2. Bölgelerin Tasarım Stili
+    // 2. Bölgelerin Varsayılan Yapboz Rengi (Mavi dumanlı stil)
     function defaultStyle(feature) {
         return {
             fillColor: '#1877f2',
@@ -91,7 +92,7 @@
         };
     }
 
-    // 3. Üzerine gelince turuncu/mavi parlama efekti (Hover)
+    // 3. Fare Üzerine Gelince Tetiklenen Parlama (Hover)
     function highlightFeature(e) {
         var layer = e.target;
         layer.setStyle({
@@ -99,7 +100,7 @@
             weight: 3,
             color: '#fff',
             dashArray: '',
-            fillOpacity: 0.45
+            fillOpacity: 0.5
         });
         layer.bringToFront();
         document.getElementById('infoBox').innerText = layer.feature.properties.name;
@@ -109,8 +110,13 @@
         regionLayer.resetStyle(e.target);
     }
 
+    // 4. Tıklayınca O Bölgeye Kilitlenme (Yapbozun içine giriş)
     function zoomToFeature(e) {
         map.fitBounds(e.target.getBounds());
+        var regionName = e.target.feature.properties.name;
+        document.getElementById('infoBox').innerText = regionName + " İçine Girildi";
+        
+        // Buradan sonra il seviyesindeki yapboz parçalarını çağıracağız (Aşama 2)
     }
 
     function onEachFeature(feature, layer) {
@@ -121,7 +127,7 @@
         });
     }
 
-    // 4. Kendi İçinde Hazır Gerçek Sınır Koordinatları (Marmara ve İç Anadolu için gerçek sınırlar)
+    // 5. İNTERNETE BAĞIMLI OLMAYAN BÖLGE YAPBOZ PARÇALARI (GEOJSON GÖMÜLÜ)
     var turkeyRegions = {
         "type": "FeatureCollection",
         "features": [
@@ -144,17 +150,26 @@
                         [31.5, 41.0], [35.0, 41.5], [37.0, 40.5], [38.5, 39.5], [36.0, 37.5], [32.5, 37.5], [31.0, 39.0], [31.5, 41.0]
                     ]]
                 }
+            },
+            {
+                "type": "Feature",
+                "properties": {"name": "Ege Bölgesi"},
+                "geometry": {
+                    "type": "Polygon",
+                    "coordinates": [[
+                        [26.0, 40.0], [27.5, 39.5], [29.0, 40.0], [30.5, 39.0], [30.0, 37.0], [27.0, 36.5], [26.0, 38.5], [26.0, 40.0]
+                    ]]
+                }
             }
         ]
     };
 
-    // Haritaya sınırları ekliyoruz
     var regionLayer = L.geoJson(turkeyRegions, {
         style: defaultStyle,
         onEachFeature: onEachFeature
     }).addTo(map);
 
-    // 5. Parlayan Noktalar
+    // 6. İlk Parlayan Örnek Noktamız (Çerkezköy)
     var customIcon = L.divIcon({ className: 'glow-marker' });
     L.marker([41.2912, 28.0017], {icon: customIcon}).addTo(map)
         .bindPopup("<b>Hakan</b><br>Üretim Mühendisi<br>Fibertex - Çerkezköy");
