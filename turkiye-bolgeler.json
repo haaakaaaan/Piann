@@ -1,183 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Piann - Interactive Network Map</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <style>
-        body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; overflow: hidden; }
-        #map { height: 100vh; width: 100vw; background: #f4f6f9; }
-
-        /* Üst Arama Çubuğu */
-        .search-container {
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 1000;
-            width: 500px;
-            background: white;
-            padding: 10px 20px;
-            border-radius: 50px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-        }
-        .search-container input {
-            border: none;
-            width: 100%;
-            padding: 10px;
-            font-size: 18px;
-            outline: none;
-        }
-
-        /* Sağ Üst Bilgi Kutusu */
-        .info-box {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-            background: white;
-            padding: 15px 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            font-size: 16px;
-            font-weight: 600;
-            color: #333;
-        }
-
-        /* Parlayan Mavi Nokta Efekti */
-        .glow-marker {
-            width: 14px;
-            height: 14px;
-            background-color: #1877f2;
-            border: 2px solid white;
-            border-radius: 50%;
-            box-shadow: 0 0 10px #1877f2;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.4); opacity: 0.8; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-    </style>
-</head>
-<body>
-
-<div class="search-container">
-    <input type="text" placeholder="İl, ilçe veya meslek ara...">
-</div>
-
-<div class="info-box" id="infoBox">İncelemek istediğiniz bölgeye tıklayın</div>
-
-<div id="map"></div>
-
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-<script>
-    // 1. Haritayı Türkiye Merkezli Başlat
-    var map = L.map('map').setView([39.0, 35.0], 6);
-
-    // Temiz ve sade kurumsal alt zemin
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; Piann'
-    }).addTo(map);
-
-    var currentLayer; // Ekrandaki aktif sınır katmanını tutar
-
-    // 2. Bölgelerin / İllerin Varsayılan Tasarım Stili
-    function defaultStyle(feature) {
-        return {
-            fillColor: '#1877f2',
-            weight: 2,
-            opacity: 1,
-            color: 'white',
-            dashArray: '3',
-            fillOpacity: 0.25
-        };
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "name": "Marmara Bölgesi", "id": "marmara" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [26.042, 40.721], [26.002, 40.812], [26.154, 40.953], [26.351, 41.102], 
+          [26.541, 41.123], [26.682, 41.254], [26.711, 41.412], [26.753, 41.551], 
+          [26.902, 41.804], [27.201, 41.982], [27.603, 41.991], [28.002, 41.954], 
+          [28.451, 41.602], [28.903, 41.301], [29.152, 41.254], [29.501, 41.152], 
+          [30.003, 41.181], [30.502, 41.123], [31.104, 41.052], [31.421, 40.851], 
+          [31.253, 40.652], [30.802, 40.501], [30.454, 40.352], [29.901, 40.453], 
+          [29.602, 39.951], [29.103, 39.602], [28.502, 39.704], [28.001, 39.652], 
+          [27.403, 39.501], [26.852, 39.423], [26.401, 39.552], [26.054, 39.851], 
+          [26.202, 40.103], [26.451, 40.252], [25.702, 40.401], [25.904, 40.602], 
+          [26.042, 40.721]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": { "name": "İç Anadolu Bölgesi", "id": "icanadolu" },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [31.421, 40.851], [31.802, 40.654], [32.403, 40.502], [32.851, 40.453], 
+          [33.502, 40.551], [34.004, 40.402], [34.501, 40.254], [34.803, 40.452], 
+          [34.902, 40.881], [35.504, 40.752], [36.201, 40.603], [36.802, 40.501], 
+          [37.403, 40.402], [38.001, 40.204], [38.602, 39.951], [39.424, 39.852], 
+          [39.352, 39.501], [39.203, 39.152], [38.501, 38.804], [37.902, 38.601], 
+          [37.304, 38.202], [36.811, 38.103], [36.352, 38.121], [36.003, 37.502], 
+          [35.401, 37.454], [34.852, 37.381], [34.204, 37.102], [33.501, 36.803], 
+          [32.902, 36.551], [32.503, 36.602], [32.151, 37.204], [31.502, 37.601], 
+          [31.154, 38.002], [31.002, 38.451], [30.803, 38.952], [30.551, 39.524], 
+          [30.554, 40.351], [31.421, 40.851]
+        ]]
+      }
     }
-
-    // 3. Fare Üzerine Gelince Tetiklenen Parlama (Hover)
-    function highlightFeature(e) {
-        var layer = e.target;
-        layer.setStyle({
-            fillColor: '#0a66c2', /* LinkedIn Mavisi */
-            weight: 3,
-            color: '#fff',
-            dashArray: '',
-            fillOpacity: 0.5
-        });
-        layer.bringToFront();
-        document.getElementById('infoBox').innerText = layer.feature.properties.name;
-    }
-
-    // 4. Fare Çekilince Eski Stile Döndürme
-    function resetHighlight(e) {
-        currentLayer.resetStyle(e.target);
-    }
-
-    // 5. TIKLAYINCA ÇALIŞAN KATMANLI YÜKLEME MANTIĞI (Yöntem 3)
-    function zoomToFeature(e) {
-        map.fitBounds(e.target.getBounds());
-        var regionId = e.target.feature.properties.id;
-        var regionName = e.target.feature.properties.name;
-        
-        document.getElementById('infoBox').innerText = regionName + " İçine Giriliyor...";
-
-        // Eğer kullanıcı bir ana bölgeye tıkladıysa, o bölgenin alt illerini yükle
-        if (regionId === 'marmara') {
-            loadSubLayer('marmara-iller.json');
-        } else if (regionId === 'icanadolu') {
-            loadSubLayer('icanadolu-iller.json');
-        }
-    }
-
-    function onEachFeature(feature, layer) {
-        layer.on({
-            mouseover: highlightFeature,
-            mouseout: resetHighlight,
-            click: zoomToFeature
-        });
-    }
-
-    // 6. Yeni Katmanı Yükleyen Akıllı Fonksiyon
-    function loadSubLayer(jsonFileName) {
-        fetch(jsonFileName)
-            .then(response => response.json())
-            .then(data => {
-                // Eski katmanı haritadan tamamen sil (Temiz Yapboz Mantığı)
-                if (currentLayer) {
-                    map.removeLayer(currentLayer);
-                }
-                // Yeni il katmanını haritaya jilet gibi oturt
-                currentLayer = L.geoJson(data, {
-                    style: defaultStyle,
-                    onEachFeature: onEachFeature
-                }).addTo(map);
-            })
-            .catch(err => {
-                console.log(jsonFileName + " dosyası henüz oluşturulmadı veya yüklenemedi.");
-            });
-    }
-
-    // 7. SİSTEMİN İLK AÇILIŞI: Sadece Ana Bölgeleri Yükle (turkiye-bolgeler.json)
-    fetch('turkiye-bolgeler.json')
-        .then(response => response.json())
-        .then(data => {
-            currentLayer = L.geoJson(data, {
-                style: defaultStyle,
-                onEachFeature: onEachFeature
-            }).addTo(map);
-        })
-        .catch(err => {
-            console.error("Ana bölge dosyası yüklenirken hata oluştu:", err);
-        });
-
-    // 8. Sabit Parlayan Kullanıcı Noktası (Çerkezköy)
-    var customIcon = L.divIcon({ className: 'glow-marker' });
-    L.marker([41.2912, 28.0017], {icon: customIcon}).addTo(map)
-        .bindPopup("<b>Hakan</b><br>Üretim Mühendisi<br>Fibertex - Çerkezköy");
-</script>
-
-</body>
-</html>
+  ]
+}
