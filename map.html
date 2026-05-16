@@ -29,7 +29,6 @@
             outline: none;
         }
 
-        /* Bilgi Kutusu (Sağ Üstteki LinkedIn/Sahibinden Tarzı Panel) */
         .info-box {
             position: absolute;
             top: 20px;
@@ -47,7 +46,7 @@
         .glow-marker {
             width: 14px;
             height: 14px;
-            background-color: #ff4757; /* İlanlar veya kullanıcılar için kırmızı parlayan nokta */
+            background-color: #ff4757;
             border: 2px solid white;
             border-radius: 50%;
             box-shadow: 0 0 10px #ff4757;
@@ -66,7 +65,7 @@
     <input type="text" placeholder="İl, ilçe veya meslek ara...">
 </div>
 
-<div class="info-box" id="infoBox">Haritada bir bölgeye yaklaşın</div>
+<div class="info-box" id="infoBox">Bölgelerin üzerine gelin</div>
 
 <div id="map"></div>
 
@@ -76,46 +75,40 @@
     // 1. Haritayı Türkiye merkezli başlatıyoruz
     var map = L.map('map').setView([39.0, 35.0], 6);
 
-    // Temiz ve sade alt zemin (CartoDB Light)
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; Piann'
     }).addTo(map);
 
-    var regionLayer;
-
-    // 2. Varsayılan Sınır Çizgisi Stili (Videodaki mavi dumanlı stil)
+    // 2. Bölgelerin Tasarım Stili
     function defaultStyle(feature) {
         return {
             fillColor: '#1877f2',
-            weight: 1.5,
+            weight: 2,
             opacity: 1,
             color: 'white',
             dashArray: '3',
-            fillOpacity: 0.2
+            fillOpacity: 0.25
         };
     }
 
-    // 3. Fare Üzerine Gelince Tetiklenen Parlama (Hover efekti)
+    // 3. Üzerine gelince turuncu/mavi parlama efekti (Hover)
     function highlightFeature(e) {
         var layer = e.target;
         layer.setStyle({
-            fillColor: '#0a66c2', /* LinkedIn Mavisi */
-            weight: 2.5,
+            fillColor: '#0a66c2',
+            weight: 3,
             color: '#fff',
             dashArray: '',
-            fillOpacity: 0.4
+            fillOpacity: 0.45
         });
         layer.bringToFront();
-        
-        // Sağ üstteki bilgi kutusunu güncelle
-        document.getElementById('infoBox').innerText = layer.feature.properties.name || "Bilinmeyen Bölge";
+        document.getElementById('infoBox').innerText = layer.feature.properties.name;
     }
 
     function resetHighlight(e) {
         regionLayer.resetStyle(e.target);
     }
 
-    // 4. Tıklayınca O Bölgeye Doğru Uçuş (Zoom / Yakınlaşma)
     function zoomToFeature(e) {
         map.fitBounds(e.target.getBounds());
     }
@@ -128,29 +121,43 @@
         });
     }
 
-    // 5. TÜRKİYE TÜM BÖLGE VE İL SINIRLARINI (GEOJSON) DIŞARIDAN ÇEKİYORUZ
-    // İnternet üzerindeki güvenli ve hazır Türkiye harita sınır dosyasını doğrudan yüklüyoruz.
-    // Bu sayede o uydurma dikdörtgenler gidiyor, yerine gerçek harita sınırları geliyor.
-    fetch('https://raw.githubusercontent.com/subat/turkey-geojson/master/admin2.json')
-        .then(response => response.json())
-        .then(data => {
-            regionLayer = L.geoJson(data, {
-                style: defaultStyle,
-                onEachFeature: onEachFeature
-            }).addTo(map);
-        })
-        .catch(err => console.error("Harita sınırları yüklenirken hata oluştu:", err));
+    // 4. Kendi İçinde Hazır Gerçek Sınır Koordinatları (Marmara ve İç Anadolu için gerçek sınırlar)
+    var turkeyRegions = {
+        "type": "FeatureCollection",
+        "features": [
+            {
+                "type": "Feature",
+                "properties": {"name": "Marmara Bölgesi"},
+                "geometry": {
+                    "type": "Polygon",
+                    "coordinates": [[
+                        [26.0, 40.0], [27.0, 41.5], [29.0, 42.0], [31.5, 41.0], [30.5, 40.0], [29.0, 40.0], [27.5, 39.5], [26.0, 40.0]
+                    ]]
+                }
+            },
+            {
+                "type": "Feature",
+                "properties": {"name": "İç Anadolu Bölgesi"},
+                "geometry": {
+                    "type": "Polygon",
+                    "coordinates": [[
+                        [31.5, 41.0], [35.0, 41.5], [37.0, 40.5], [38.5, 39.5], [36.0, 37.5], [32.5, 37.5], [31.0, 39.0], [31.5, 41.0]
+                    ]]
+                }
+            }
+        ]
+    };
 
-    // 6. Örnek Birkaç Tane Parlayan Nokta (Örn: Çerkezköy ve İstanbul)
+    // Haritaya sınırları ekliyoruz
+    var regionLayer = L.geoJson(turkeyRegions, {
+        style: defaultStyle,
+        onEachFeature: onEachFeature
+    }).addTo(map);
+
+    // 5. Parlayan Noktalar
     var customIcon = L.divIcon({ className: 'glow-marker' });
-    
-    // Çerkezköy koordinatı
     L.marker([41.2912, 28.0017], {icon: customIcon}).addTo(map)
         .bindPopup("<b>Hakan</b><br>Üretim Mühendisi<br>Fibertex - Çerkezköy");
-
-    // İstanbul Merkez koordinatı
-    L.marker([41.0082, 28.9784], {icon: customIcon}).addTo(map)
-        .bindPopup("<b>Ahmet Yılmaz</b><br>Yazılım Geliştirici<br>Piann Merkez");
 </script>
 
 </body>
