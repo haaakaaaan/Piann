@@ -45,7 +45,7 @@
             color: #333;
         }
 
-        /* Parlayan Nokta Efekti (Çerkezköy için) */
+        /* Parlayan Nokta Efekti */
         .glow-marker {
             width: 14px;
             height: 14px;
@@ -75,17 +75,16 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script>
-    // 1. Haritayı Türkiye Merkezli Başlatıyoruz
+    // 1. Haritayı Başlat
     var map = L.map('map').setView([39.0, 35.0], 6);
 
-    // Sade ve şık kurumsal harita tabanı
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; Piann'
     }).addTo(map);
 
-    var currentLayer; // Haritada o an gösterilen aktif katman
+    var currentLayer;
 
-    // 2. Sınır Çizgilerinin Görsel Stili
+    // 2. Varsayılan Stil
     function defaultStyle(feature) {
         return {
             fillColor: '#1877f2',
@@ -97,11 +96,11 @@
         };
     }
 
-    // 3. Fare Üzerine Gelince Tetiklenen Parlama (Hover)
+    // 3. Üzerine Gelince Parlama (Hover)
     function highlightFeature(e) {
         var layer = e.target;
         layer.setStyle({
-            fillColor: '#0a66c2', // LinkedIn Kurumsal Mavisi
+            fillColor: '#0a66c2',
             weight: 3,
             color: '#fff',
             dashArray: '',
@@ -109,26 +108,25 @@
         });
         layer.bringToFront();
         
-        // İndirdiğin resmi dosyada il ismi "name" alanında tutuluyor
-        var locationName = layer.feature.properties.name || "Bölge";
+        // İndirdiğin resmi kütüphane dosyası için NAME_1 kontrolü ekledik
+        var locationName = layer.feature.properties.NAME_1 || layer.feature.properties.name || "Bölge";
         document.getElementById('infoBox').innerText = locationName;
     }
 
-    // 4. Fare Çekilince Eski Haline Döndürme
     function resetHighlight(e) {
         currentLayer.resetStyle(e.target);
     }
 
-    // 5. TIKLAYINCA ÇALIŞAN AKILLI KATMANLI YÜKLEME MANTIĞI
+    // 4. Tıklayınca Yakınlaşma ve Dosya Çağırma
     function zoomToFeature(e) {
         map.fitBounds(e.target.getBounds());
         var properties = e.target.feature.properties;
         var regionId = properties.id;
-        var locationName = properties.name || "Bölge";
+        var locationName = properties.NAME_1 || properties.name || "Bölge";
         
         document.getElementById('infoBox').innerText = locationName + " İçine Girildi";
 
-        // Eğer tıklanan yer ana bölgeyse (id'si 'marmara' ise) senin indirdiğin il dosyasına bağlan
+        // Tıklanan ana bölge Marmara ise il katmanını tetikle
         if (regionId === 'marmara') {
             loadSubLayer('marmara-iller.json');
         }
@@ -142,21 +140,19 @@
         });
     }
 
-    // 6. Tıklanan Bölgenin İllerini Yükleyen Akıllı Fonksiyon
+    // 5. İndirdiğin Büyük Dosyayı Okuyan ve Ayıklayan Yeni Fonksiyon
     function loadSubLayer(jsonFileName) {
         fetch(jsonFileName)
             .then(response => response.json())
             .then(data => {
-                // Ekrandaki eski kaba ana bölge katmanını haritadan tamamen kaldır
                 if (currentLayer) {
                     map.removeLayer(currentLayer);
                 }
                 
-                // İndirdiğin tüm Türkiye dosyasından SADECE Marmara illerini ayıklayıp (filter) jilet gibi çiziyoruz
+                // İzzet Kılıç'ın dosyasındaki NAME_1 formatına göre Marmara illerini haritaya tam oturtuyoruz
                 currentLayer = L.geoJson(data, {
                     filter: function(feature) {
-                        var name = feature.properties.name || "";
-                        // Marmara Bölgesi resmi il listesi
+                        var name = feature.properties.NAME_1 || feature.properties.name || "";
                         var marmaraCities = ["İstanbul", "Tekirdağ", "Edirne", "Kırklareli", "Çanakkale", "Kocaeli", "Yalova", "Sakarya", "Bilecik", "Bursa", "Balıkesir"];
                         return marmaraCities.includes(name);
                     },
@@ -164,10 +160,10 @@
                     onEachFeature: onEachFeature
                 }).addTo(map);
             })
-            .catch(err => console.error("İl katmanı yüklenirken hata oluştu:", err));
+            .catch(err => console.error("İl katmanı yüklenirken veri okunamadı:", err));
     }
 
-    // 7. İLK AÇILIŞ: Sadece turkiye-bolgeler.json dosyasındaki ana bölgeleri yükle
+    // 6. İlk Açılış: Ana bölgeleri getir
     fetch('turkiye-bolgeler.json')
         .then(response => response.json())
         .then(data => {
@@ -176,9 +172,9 @@
                 onEachFeature: onEachFeature
             }).addTo(map);
         })
-        .catch(err => console.error("Ana bölge yüklenirken hata oluştu:", err));
+        .catch(err => console.error("Ana bölge yüklenirken hata:", err));
 
-    // 8. Sabit Parlayan Kullanıcı Noktası (Çerkezköy)
+    // Sabit parlayan nokta (Çerkezköy)
     var customIcon = L.divIcon({ className: 'glow-marker' });
     L.marker([41.2912, 28.0017], {icon: customIcon}).addTo(map)
         .bindPopup("<b>Hakan</b><br>Üretim Mühendisi<br>Fibertex - Çerkezköy");
