@@ -11,7 +11,7 @@
             padding: 0; 
             width: 100%;
             height: 100%;
-            overflow: hidden; /* Sayfanın kendisinin aşağı yukarı kaymasını kökten engeller */
+            overflow: hidden; 
             background: #eef2f7;
         }
         
@@ -82,21 +82,35 @@
     var infoBox = document.getElementById('infoBox');
 
     function initMap() {
-        // Haritayı Türkiye merkezli ve dikey taşmaları engelleyecek şekilde başlatıyoruz
+        // Haritanın dünya genelinde dışarı taşmasını ve tekrarlamasını engelleyen sınırlar (Bounds)
+        const WORLD_BOUNDS = {
+            north: 85,
+            south: -85,
+            west: -180,
+            east: 180
+        };
+
         map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: 39.0, lng: 35.0}, 
             zoom: 6,
-            disableDefaultUI: true, // Kalabalık butonları gizle
-            zoomControl: true,      // Sadece zoom butonunu açık bırak
-            gestureHandling: 'greedy' // Mobil cihazlarda haritanın daha akıcı hareket etmesini sağlar
+            minZoom: 3, // Kullanıcının çok fazla geriye gidip dünyayı küçücük yapmasını engeller
+            maxZoom: 18, // Çok fazla yaklaşmayı sınırlandırır
+            disableDefaultUI: true, 
+            zoomControl: true,      
+            gestureHandling: 'greedy',
+            
+            // Haritayı dünya sınırlarına hapsediyoruz (Kullanıcı bu sınırların dışına kaydıramaz)
+            restriction: {
+                latLngBounds: WORLD_BOUNDS,
+                strictBounds: false // Sınır dışına taşmayı tamamen kilitler
+            }
         });
 
-        // Noktalarımızı haritaya yerleştiriyoruz
+        // Noktalarımız
         addGlowMarker({lat: 41.2912, lng: 28.0017}, "Hakan (hako)", "Üretim Mühendisi / Fibertex - Çerkezköy");
         addGlowMarker({lat: 41.0082, lng: 28.9784}, "Melike", "Operasyon Yöneticisi / Piann - İstanbul");
     }
 
-    // Profesyonel Kurumsal Mavi Noktaları Çizen Fonksiyon
     function addGlowMarker(position, title, details) {
         var marker = new google.maps.Marker({
             position: position,
@@ -105,10 +119,10 @@
             icon: {
                 path: google.maps.SymbolPath.CIRCLE,
                 scale: 7,
-                fillColor: '#1877f2', // Kurumsal Mavi
+                fillColor: '#1877f2', 
                 fillOpacity: 0.9,
                 strokeWeight: 2,
-                strokeColor: '#ffffff' // Dış beyaz çeper
+                strokeColor: '#ffffff' 
             }
         });
 
