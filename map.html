@@ -2,11 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Piann - Interactive Network Map</title>
     <style>
-        body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; overflow: hidden; }
-        #map { height: 100vh; width: 100vw; background: #eef2f7; }
+        /* Sayfa yapısını ve dikey/yatay kaydırmaları tamamen kilitliyoruz */
+        html, body { 
+            margin: 0; 
+            padding: 0; 
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Sayfanın kendisinin aşağı yukarı kaymasını kökten engeller */
+            background: #eef2f7;
+        }
+        
+        /* Harita kutusunu ekran boyutuna tam olarak çiviliyoruz */
+        #map { 
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100% !important; 
+            height: 100% !important; 
+        }
 
         /* Üst Profesyonel Arama Çubuğu */
         .search-container {
@@ -15,40 +31,44 @@
             left: 50%;
             transform: translateX(-50%);
             z-index: 1000;
-            width: 450px;
+            width: 90%;
+            max-width: 450px;
             background: white;
             padding: 10px 20px;
             border-radius: 50px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            box-sizing: border-box;
         }
         .search-container input {
             border: none;
             width: 100%;
-            padding: 10px;
+            padding: 5px 10px;
             font-size: 16px;
             outline: none;
         }
 
-        /* Sağ Üst Bilgi Kutusu */
+        /* Bilgi Kutusu */
         .info-box {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 85px;
+            left: 50%;
+            transform: translateX(-50%);
             z-index: 1000;
             background: white;
-            padding: 15px 20px;
-            border-radius: 8px;
+            padding: 10px 20px;
+            border-radius: 30px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 600;
             color: #333;
+            white-space: nowrap;
         }
     </style>
 </head>
 <body>
 
 <div class="search-container">
-    <input type="text" placeholder="İl, ilçe veya meslek ara (Örn: Çerkezköy)...">
+    <input type="text" placeholder="İl, ilçe veya meslek ara...">
 </div>
 
 <div class="info-box" id="infoBox">Piann Profesyonel Harita Altyapısı Aktif</div>
@@ -62,20 +82,21 @@
     var infoBox = document.getElementById('infoBox');
 
     function initMap() {
-        // 1. Haritayı Google Sunucularından Türkiye Merkezli Olarak Başlatıyoruz
+        // Haritayı Türkiye merkezli ve dikey taşmaları engelleyecek şekilde başlatıyoruz
         map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: 39.0, lng: 35.0}, 
             zoom: 6,
-            disableDefaultUI: true, // Google'ın tüm kalabalık butonlarını gizle (Temiz LinkedIn tarzı)
-            zoomControl: true       // Sadece sağ alttaki zoom butonunu açık bırak
+            disableDefaultUI: true, // Kalabalık butonları gizle
+            zoomControl: true,      // Sadece zoom butonunu açık bırak
+            gestureHandling: 'greedy' // Mobil cihazlarda haritanın daha akıcı hareket etmesini sağlar
         });
 
-        // 2. Çerkezköy'e Noktamızı Koyuyoruz
+        // Noktalarımızı haritaya yerleştiriyoruz
         addGlowMarker({lat: 41.2912, lng: 28.0017}, "Hakan (hako)", "Üretim Mühendisi / Fibertex - Çerkezköy");
         addGlowMarker({lat: 41.0082, lng: 28.9784}, "Melike", "Operasyon Yöneticisi / Piann - İstanbul");
     }
 
-    // 3. Nokta ve Popup Yönetimi
+    // Profesyonel Kurumsal Mavi Noktaları Çizen Fonksiyon
     function addGlowMarker(position, title, details) {
         var marker = new google.maps.Marker({
             position: position,
