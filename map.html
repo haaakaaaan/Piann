@@ -9,28 +9,20 @@
         body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; overflow: hidden; }
         #map { height: 100vh; width: 100vw; background: #f4f6f9; }
 
-        /* Üst Arama Çubuğu */
         .search-container {
             position: absolute;
             top: 20px;
             left: 50%;
             transform: translateX(-50%);
             z-index: 1000;
-            width: 500px;
+            width: 450px;
             background: white;
             padding: 10px 20px;
             border-radius: 50px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.15);
         }
-        .search-container input {
-            border: none;
-            width: 100%;
-            padding: 10px;
-            font-size: 18px;
-            outline: none;
-        }
+        .search-container input { border: none; width: 100%; padding: 10px; font-size: 16px; outline: none; }
 
-        /* Sağ Üst Bilgi Kutusu */
         .info-box {
             position: absolute;
             top: 20px;
@@ -40,24 +32,23 @@
             padding: 15px 20px;
             border-radius: 8px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 600;
             color: #333;
         }
 
-        /* Parlayan Nokta Efekti */
         .glow-marker {
             width: 14px;
             height: 14px;
             background-color: #1877f2;
             border: 2px solid white;
             border-radius: 50%;
-            box-shadow: 0 0 10px #1877f2;
+            box-shadow: 0 0 12px #1877f2;
             animation: pulse 2s infinite;
         }
         @keyframes pulse {
             0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.4); opacity: 0.8; }
+            50% { transform: scale(1.3); opacity: 0.8; }
             100% { transform: scale(1); opacity: 1; }
         }
     </style>
@@ -75,8 +66,19 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <script>
-    // 1. Haritayı Başlat
-    var map = L.map('map').setView([39.0, 35.0], 6);
+    // Haritanın dünyayı sonsuz kez yana doğru tekrarlamasını (şerit olmasını) engelliyoruz
+    var southWest = L.latLng(34.0, 24.0),
+        northEast = L.latLng(43.0, 46.0),
+        bounds = L.latLngBounds(southWest, northEast);
+
+    var map = L.map('map', {
+        center: [39.0, 35.0],
+        zoom: 6,
+        minZoom: 5,
+        maxZoom: 11,
+        maxBounds: bounds,
+        maxBoundsViscosity: 1.0
+    });
 
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; Piann'
@@ -84,8 +86,7 @@
 
     var currentLayer;
 
-    // 2. Varsayılan Stil
-    function defaultStyle(feature) {
+    function style(feature) {
         return {
             fillColor: '#1877f2',
             weight: 2,
@@ -96,85 +97,53 @@
         };
     }
 
-    // 3. Üzerine Gelince Parlama (Hover)
     function highlightFeature(e) {
         var layer = e.target;
-        layer.setStyle({
-            fillColor: '#0a66c2',
-            weight: 3,
-            color: '#fff',
-            dashArray: '',
-            fillOpacity: 0.5
-        });
+        layer.setStyle({ fillColor: '#0a66c2', weight: 3, color: '#fff', dashArray: '', fillOpacity: 0.45 });
         layer.bringToFront();
-        
-        // İndirdiğin resmi kütüphane dosyası için NAME_1 kontrolü ekledik
-        var locationName = layer.feature.properties.NAME_1 || layer.feature.properties.name || "Bölge";
-        document.getElementById('infoBox').innerText = locationName;
+        document.getElementById('infoBox').innerText = layer.feature.properties.name || layer.feature.properties.NAME_1 || "Bölge";
     }
 
     function resetHighlight(e) {
         currentLayer.resetStyle(e.target);
     }
 
-    // 4. Tıklayınca Yakınlaşma ve Dosya Çağırma
+    // Tıklayınca o bölgenin bağımsız küçük dosyasına gitme mantığı
     function zoomToFeature(e) {
         map.fitBounds(e.target.getBounds());
         var properties = e.target.feature.properties;
         var regionId = properties.id;
-        var locationName = properties.NAME_1 || properties.name || "Bölge";
+        var regionName = properties.name || "Bölge";
         
-        document.getElementById('infoBox').innerText = locationName + " İçine Girildi";
+        document.getElementById('infoBox').innerText = regionName + " Yükleniyor...";
 
-        // Tıklanan ana bölge Marmara ise il katmanını tetikle
+        // Sadece tıkladığımız bölgenin küçük yapboz parçasını çağırıyoruz
         if (regionId === 'marmara') {
-            loadSubLayer('marmara-iller.json');
+            loadSpecificRegion('bolge-marmara.json');
         }
     }
 
     function onEachFeature(feature, layer) {
-        layer.on({
-            mouseover: highlightFeature,
-            mouseout: resetHighlight,
-            click: zoomToFeature
-        });
+        layer.on({ mouseover: highlightFeature, mouseout: resetHighlight, click: zoomToFeature });
     }
 
-    // 5. İndirdiğin Büyük Dosyayı Okuyan ve Ayıklayan Yeni Fonksiyon
-    function loadSubLayer(jsonFileName) {
-        fetch(jsonFileName)
-            .then(response => response.json())
+    function loadSpecificRegion(jsonFile) {
+        fetch(jsonFile)
+            .then(res => res.json())
             .then(data => {
-                if (currentLayer) {
-                    map.removeLayer(currentLayer);
-                }
-                
-                // İzzet Kılıç'ın dosyasındaki NAME_1 formatına göre Marmara illerini haritaya tam oturtuyoruz
-                currentLayer = L.geoJson(data, {
-                    filter: function(feature) {
-                        var name = feature.properties.NAME_1 || feature.properties.name || "";
-                        var marmaraCities = ["İstanbul", "Tekirdağ", "Edirne", "Kırklareli", "Çanakkale", "Kocaeli", "Yalova", "Sakarya", "Bilecik", "Bursa", "Balıkesir"];
-                        return marmaraCities.includes(name);
-                    },
-                    style: defaultStyle,
-                    onEachFeature: onEachFeature
-                }).addTo(map);
+                if (currentLayer) { map.removeLayer(currentLayer); }
+                currentLayer = L.geoJson(data, { style: style, onEachFeature: onEachFeature }).addTo(map);
             })
-            .catch(err => console.error("İl katmanı yüklenirken veri okunamadı:", err));
+            .catch(err => console.log("Bölge dosyası yüklenemedi. Henüz oluşturulmamış olabilir."));
     }
 
-    // 6. İlk Açılış: Ana bölgeleri getir
+    // İLK AÇILIŞ: turkiye-bolgeler.json dosyasından ana bölgeleri okur
     fetch('turkiye-bolgeler.json')
-        .then(response => response.json())
+        .then(res => res.json())
         .then(data => {
-            currentLayer = L.geoJson(data, {
-                style: defaultStyle,
-                onEachFeature: onEachFeature
-            }).addTo(map);
-        })
-        .catch(err => console.error("Ana bölge yüklenirken hata:", err));
+            currentLayer = L.geoJson(data, { style: style, onEachFeature: onEachFeature }).addTo(map);
+        });
 
-    // Sabit parlayan nokta (Çerkezköy)
     var customIcon = L.divIcon({ className: 'glow-marker' });
     L.marker([41.2912, 28.0017], {icon: customIcon}).addTo(map)
         .bindPopup("<b>Hakan</b><br>Üretim Mühendisi<br>Fibertex - Çerkezköy");
