@@ -2636,11 +2636,43 @@
       }
       .col-left  { display: none; }
       .col-right { display: none; }
+      .navbar-clock { display: none; }
 
       :root {
         --text-5xl: 2.25rem;
         --text-6xl: 2.75rem;
       }
+    }
+
+    /* Canlı saat — navbar sağ alan */
+    .navbar-clock {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 1px;
+      padding: 4px var(--space-3);
+      background: var(--iznik-50);
+      border: 1px solid var(--iznik-200);
+      border-radius: var(--radius-md);
+      font-family: var(--font-sans);
+      line-height: 1.1;
+      flex-shrink: 0;
+    }
+
+    .navbar-clock-time {
+      font-size: var(--text-sm);
+      font-weight: 700;
+      color: var(--iznik-800);
+      letter-spacing: 0.04em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .navbar-clock-label {
+      font-size: 9px;
+      font-weight: 500;
+      color: var(--iznik-500);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
     }
   </style>
 </head>
@@ -2693,6 +2725,11 @@
 
       <!-- SAĞ AKSIYONLAR -->
       <div class="navbar-actions">
+        <!-- Canlı saat -->
+        <div class="navbar-clock" id="navbar-clock" aria-live="polite" aria-label="Güncel saat">
+          <span class="navbar-clock-time" id="clock-time">--:--</span>
+          <span class="navbar-clock-label">Yerel Saat</span>
+        </div>
         <a
           href="https://wa.me/905069274071?text=Merhaba%2C%20Piann%20ürünleri%20hakkında%20bilgi%20almak%20istiyorum."
           class="btn-whatsapp-nav"
@@ -2785,7 +2822,7 @@
         <!-- Üst rozet -->
         <div class="hero-badge" data-animate>
           <span class="hero-badge-dot" aria-hidden="true"></span>
-          Hasat Sezonu Açık · 2024
+          Hasat Sezonu Açık · 2026
         </div>
 
         <!-- Ana başlık -->
@@ -2877,7 +2914,7 @@
               </div>
 
               <div class="card-body sidebar-profile-body">
-                <h2 class="sidebar-profile-name font-serif">Piann Ailesi</h2>
+                <h2 class="sidebar-profile-name font-serif">Asırlık Gelenek</h2>
                 <p class="sidebar-profile-role">İznik · Gönen · Biga</p>
 
                 <p class="sidebar-profile-bio">
@@ -2899,7 +2936,7 @@
             <!-- Güven rozetleri kartı -->
             <div class="card sidebar-trust-card">
               <div class="card-body">
-                <h3 class="sidebar-section-title">Neden Piann?</h3>
+                <h3 class="sidebar-section-title">Öne Çıkan Özellikler</h3>
                 <ul class="trust-list">
                   <li class="trust-item">
                     <div class="trust-icon trust-icon--iznik" aria-hidden="true">
@@ -2996,7 +3033,7 @@
                 <div class="product-img-badges">
                   <span class="badge badge-iznik">İznik · Bursa</span>
                   <span class="product-season-badge">
-                    <span aria-hidden="true">🫒</span> Hasat 2024
+                    <span aria-hidden="true">🫒</span> Hasat 2026
                   </span>
                 </div>
               </div>
@@ -3053,7 +3090,7 @@
             <article class="product-card card" id="sofralik-zeytin">
               <div class="img-placeholder product-img">
                 <img
-                  src="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?w=800&q=80&auto=format&fit=crop"
+                  src="https://images.unsplash.com/photo-1634887139755-79878359d766?w=800&q=80&auto=format&fit=crop"
                   alt="İznik sofralık zeytin — dalından taze"
                   loading="lazy"
                 />
@@ -3113,7 +3150,7 @@
             <article class="product-card card" id="peynir-ekmek">
               <div class="img-placeholder product-img product-img--duo">
                 <img
-                  src="https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=800&q=80&auto=format&fit=crop"
+                  src="https://images.unsplash.com/photo-1661349008073-136bed6e6788?w=800&q=80&auto=format&fit=crop"
                   alt="Gönen köy peyniri ve köy ekmeği"
                   loading="lazy"
                 />
@@ -3184,7 +3221,7 @@
             <article class="product-card card" id="salca">
               <div class="img-placeholder product-img">
                 <img
-                  src="https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?w=800&q=80&auto=format&fit=crop"
+                  src="https://images.unsplash.com/photo-1472476443507-c7a5948772fc?w=800&q=80&auto=format&fit=crop"
                   alt="Biga köy salçası — güneşte kurutulmuş kırmızı biber"
                   loading="lazy"
                 />
@@ -3278,7 +3315,7 @@
                   <li class="harvest-item harvest-item--active">
                     <div class="harvest-month">
                       <span class="harvest-month-name">Ekim</span>
-                      <span class="harvest-month-year">2024</span>
+                      <span class="harvest-month-year">2026</span>
                     </div>
                     <div class="harvest-info">
                       <span class="harvest-product">İznik Zeytini</span>
@@ -3291,7 +3328,7 @@
                   <li class="harvest-item harvest-item--active">
                     <div class="harvest-month">
                       <span class="harvest-month-name">Kas.</span>
-                      <span class="harvest-month-year">2024</span>
+                      <span class="harvest-month-year">2026</span>
                     </div>
                     <div class="harvest-info">
                       <span class="harvest-product">Zeytinyağı</span>
@@ -3496,7 +3533,7 @@
             <div class="hasat-step-visual">
               <div class="img-placeholder hasat-step-img">
                 <img
-                  src="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?w=500&q=80&auto=format&fit=crop"
+                  src="https://images.unsplash.com/photo-1634887139755-79878359d766?w=500&q=80&auto=format&fit=crop"
                   alt="Zeytinlerin yıkanması ve elenmesi"
                   loading="lazy"
                 />
@@ -3594,7 +3631,7 @@
       <div class="hasat-cta-bar">
         <div class="hasat-cta-inner">
           <div class="hasat-cta-text">
-            <p class="hasat-cta-label">2024 Sezonu Açık</p>
+            <p class="hasat-cta-label">2026 Sezonu Açık</p>
             <p class="hasat-cta-title font-serif">Seanslarda yer kalmadan rezervasyon yapın</p>
           </div>
           <div class="hasat-cta-actions">
@@ -3709,7 +3746,7 @@
           <div class="story-media">
             <div class="img-placeholder story-img">
               <img
-                src="https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=900&q=85&auto=format&fit=crop"
+                src="https://images.unsplash.com/photo-1661349008073-136bed6e6788?w=900&q=85&auto=format&fit=crop"
                 alt="Gönen köy peyniri — çiğ süt ve geleneksel üretim"
                 loading="lazy"
               />
@@ -3776,7 +3813,7 @@
           <div class="story-media">
             <div class="img-placeholder story-img">
               <img
-                src="https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?w=900&q=85&auto=format&fit=crop"
+                src="https://images.unsplash.com/photo-1472476443507-c7a5948772fc?w=900&q=85&auto=format&fit=crop"
                 alt="Biga'da kırmızı biberler güneşte kurutuluyor"
                 loading="lazy"
               />
@@ -4014,7 +4051,7 @@
       <div class="footer-bottom">
         <div class="footer-bottom-inner">
           <p class="footer-copyright">
-            © 2024 Piann · Toprağın Hafızası, Sofranızın Lezzeti
+            © 2026 Piann · Toprağın Hafızası, Sofranızın Lezzeti
           </p>
           <p class="footer-legal">
             <a href="#" class="footer-legal-link">Gizlilik Politikası</a>
@@ -4085,6 +4122,21 @@
     }, { threshold: 0.4 });
 
     sections.forEach(s => observer.observe(s));
+
+    // Canlı saat — her saniye güncellenir
+    (function initClock() {
+      const clockEl = document.getElementById('clock-time');
+      if (!clockEl) return;
+      function tick() {
+        const now = new Date();
+        const hh = String(now.getHours()).padStart(2, '0');
+        const mm = String(now.getMinutes()).padStart(2, '0');
+        const ss = String(now.getSeconds()).padStart(2, '0');
+        clockEl.textContent = hh + ':' + mm + ':' + ss;
+      }
+      tick();
+      setInterval(tick, 1000);
+    })();
   </script>
 
 </body>
