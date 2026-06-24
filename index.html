@@ -1049,6 +1049,1541 @@
       color: var(--neutral-500);
     }
 
+    /* ============================================================
+       ORTA SÜTUN — ÜRÜN AKIŞI
+       ============================================================ */
+    .feed-header {
+      padding: var(--space-2) 0 var(--space-2) var(--space-1);
+      border-left: 3px solid var(--iznik-400);
+      padding-left: var(--space-4);
+      margin-bottom: var(--space-2);
+    }
+
+    .feed-header-title {
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      color: var(--neutral-900);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .feed-header-sub {
+      font-size: var(--text-sm);
+      color: var(--neutral-500);
+      margin-top: var(--space-1);
+    }
+
+    /* Ürün kartı */
+    .product-card {
+      overflow: hidden;
+    }
+
+    .product-img {
+      height: 240px;
+      position: relative;
+    }
+
+    .product-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .product-card:hover .product-img img {
+      transform: scale(1.04);
+    }
+
+    .product-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(26,46,26,0.08) 0%,
+        rgba(26,46,26,0.45) 100%
+      );
+    }
+
+    .product-img-overlay--gonen {
+      background: linear-gradient(
+        to bottom,
+        rgba(61,46,26,0.08) 0%,
+        rgba(61,46,26,0.45) 100%
+      );
+    }
+
+    .product-img-overlay--biga {
+      background: linear-gradient(
+        to bottom,
+        rgba(74,14,14,0.08) 0%,
+        rgba(74,14,14,0.50) 100%
+      );
+    }
+
+    .product-img-badges {
+      position: absolute;
+      bottom: var(--space-3);
+      left: var(--space-4);
+      right: var(--space-4);
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      flex-wrap: wrap;
+    }
+
+    .product-season-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.30);
+      color: var(--white);
+      padding: 3px var(--space-3);
+      border-radius: var(--radius-full);
+      font-size: var(--text-xs);
+      font-weight: 500;
+    }
+
+    .product-season-badge--biga {
+      background: rgba(176,43,43,0.25);
+      border-color: rgba(176,43,43,0.40);
+      color: #ffd0d0;
+    }
+
+    /* Ürün gövde */
+    .product-body {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+
+    .product-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      flex-wrap: wrap;
+    }
+
+    .product-category {
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .product-dots {
+      color: var(--neutral-400);
+      font-size: var(--text-sm);
+    }
+
+    .product-origin {
+      font-size: var(--text-xs);
+      color: var(--neutral-500);
+      font-weight: 500;
+    }
+
+    .product-title {
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      color: var(--neutral-900);
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      margin-top: calc(-1 * var(--space-2));
+    }
+
+    .product-story {
+      font-size: var(--text-sm);
+      color: var(--neutral-700);
+      line-height: 1.75;
+    }
+
+    /* Etiket çipleri */
+    .product-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+
+    .product-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px var(--space-3);
+      background: var(--iznik-50);
+      color: var(--iznik-700);
+      border: 1px solid var(--iznik-200);
+      border-radius: var(--radius-full);
+      font-size: var(--text-xs);
+      font-weight: 500;
+    }
+
+    .product-tag--gonen {
+      background: var(--gonen-50);
+      color: var(--gonen-700);
+      border-color: var(--gonen-200);
+    }
+
+    .product-tag--biga {
+      background: var(--biga-50);
+      color: var(--biga-700);
+      border-color: var(--biga-200);
+    }
+
+    /* Ambalaj seçenekleri */
+    .product-options {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      flex-wrap: wrap;
+    }
+
+    .product-options-label {
+      font-size: var(--text-xs);
+      font-weight: 600;
+      color: var(--neutral-500);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      flex-shrink: 0;
+    }
+
+    .product-option-btn {
+      padding: 5px var(--space-3);
+      border: 1.5px solid var(--neutral-300);
+      border-radius: var(--radius-full);
+      font-size: var(--text-xs);
+      font-weight: 500;
+      color: var(--neutral-600);
+      background: var(--white);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .product-option-btn:hover {
+      border-color: var(--iznik-400);
+      color: var(--iznik-700);
+      background: var(--iznik-50);
+    }
+
+    .product-option-btn.active {
+      border-color: var(--iznik-500);
+      color: var(--iznik-700);
+      background: var(--iznik-50);
+      font-weight: 600;
+    }
+
+    .product-option-btn--gonen:hover,
+    .product-option-btn--gonen.active {
+      border-color: var(--gonen-500);
+      color: var(--gonen-700);
+      background: var(--gonen-50);
+    }
+
+    .product-option-btn--biga:hover,
+    .product-option-btn--biga.active {
+      border-color: var(--biga-500);
+      color: var(--biga-700);
+      background: var(--biga-50);
+    }
+
+    /* İkili seçenek (peynir + ekmek) */
+    .product-duo-options {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      padding: var(--space-4);
+      background: var(--gonen-50);
+      border: 1px solid var(--gonen-200);
+      border-radius: var(--radius-lg);
+    }
+
+    .product-duo-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      flex-wrap: wrap;
+    }
+
+    .product-duo-label {
+      font-size: var(--text-xs);
+      font-weight: 700;
+      color: var(--gonen-700);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      min-width: 44px;
+    }
+
+    .product-option-row {
+      display: flex;
+      gap: var(--space-2);
+    }
+
+    /* Alt kısım: WA butonu + paylaş */
+    .product-footer {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding-top: var(--space-2);
+      border-top: 1px solid var(--neutral-100);
+      margin-top: var(--space-1);
+    }
+
+    .btn-product-whatsapp {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      padding: 11px var(--space-5);
+      background: #25D366;
+      color: var(--white);
+      border-radius: var(--radius-full);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      box-shadow: 0 2px 10px rgba(37,211,102,0.35);
+      transition: all var(--transition-fast);
+    }
+
+    .btn-product-whatsapp svg {
+      width: 16px;
+      height: 16px;
+      fill: var(--white);
+      flex-shrink: 0;
+    }
+
+    .btn-product-whatsapp:hover {
+      background: #1ebe5d;
+      box-shadow: 0 4px 18px rgba(37,211,102,0.50);
+      transform: translateY(-1px);
+    }
+
+    .btn-product-whatsapp--gonen {
+      background: linear-gradient(135deg, #25D366 0%, #1a9e4c 100%);
+    }
+
+    .btn-product-whatsapp--biga {
+      background: linear-gradient(135deg, #25D366 0%, #1a9e4c 100%);
+    }
+
+    .product-share-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1.5px solid var(--neutral-200);
+      background: var(--white);
+      color: var(--neutral-500);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all var(--transition-fast);
+    }
+
+    .product-share-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .product-share-btn:hover {
+      border-color: var(--iznik-400);
+      color: var(--iznik-600);
+      background: var(--iznik-50);
+    }
+
+    /* ============================================================
+       SAĞ SÜTUN — DOĞAL YAŞAM REHBERİ
+       ============================================================ */
+
+    /* WhatsApp topluluk kartı */
+    .sidebar-wa-card {
+      background: linear-gradient(135deg, var(--iznik-800) 0%, var(--iznik-600) 100%);
+      border: none;
+    }
+
+    .sidebar-wa-body {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-3);
+    }
+
+    .sidebar-wa-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(255,255,255,0.15);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sidebar-wa-icon svg {
+      width: 24px;
+      height: 24px;
+      fill: #25D366;
+    }
+
+    .sidebar-wa-title {
+      font-size: var(--text-lg);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.01em;
+    }
+
+    .sidebar-wa-desc {
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,0.75);
+      line-height: 1.6;
+    }
+
+    .sidebar-wa-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: 10px var(--space-5);
+      background: #25D366;
+      color: var(--white);
+      border-radius: var(--radius-full);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.20);
+      transition: all var(--transition-fast);
+      width: 100%;
+      justify-content: center;
+    }
+
+    .sidebar-wa-btn svg {
+      width: 15px;
+      height: 15px;
+      fill: var(--white);
+    }
+
+    .sidebar-wa-btn:hover {
+      background: #1ebe5d;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    }
+
+    /* Hasat takvimi */
+    .harvest-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .harvest-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-3) 0;
+      border-bottom: 1px solid var(--neutral-100);
+    }
+
+    .harvest-item:last-child { border-bottom: none; }
+
+    .harvest-month {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 36px;
+      flex-shrink: 0;
+    }
+
+    .harvest-month-name {
+      font-size: var(--text-xs);
+      font-weight: 700;
+      color: var(--neutral-700);
+      line-height: 1;
+    }
+
+    .harvest-month-year {
+      font-size: 10px;
+      color: var(--neutral-400);
+      line-height: 1.4;
+    }
+
+    .harvest-info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      flex: 1;
+    }
+
+    .harvest-product {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--neutral-800);
+    }
+
+    .harvest-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: var(--text-xs);
+      font-weight: 500;
+    }
+
+    .harvest-status--active { color: var(--iznik-600); }
+    .harvest-status--soon   { color: var(--gonen-600); }
+    .harvest-status--year   { color: var(--neutral-500); }
+
+    .harvest-pulse {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--iznik-500);
+      animation: pulse-dot 2s ease infinite;
+    }
+
+    /* Blog listesi */
+    .blog-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-bottom: var(--space-4);
+    }
+
+    .blog-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      padding: var(--space-3) 0;
+      border-bottom: 1px solid var(--neutral-100);
+      transition: background var(--transition-fast);
+      border-radius: var(--radius-md);
+      margin: 0 calc(-1 * var(--space-2));
+      padding-left: var(--space-2);
+      padding-right: var(--space-2);
+    }
+
+    .blog-item:last-child { border-bottom: none; }
+
+    .blog-item:hover { background: var(--neutral-50); }
+
+    .blog-item-img {
+      width: 62px;
+      height: 62px;
+      border-radius: var(--radius-md);
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .blog-item-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-slow);
+    }
+
+    .blog-item:hover .blog-item-img img {
+      transform: scale(1.08);
+    }
+
+    .blog-item-text {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .blog-item-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--iznik-600);
+    }
+
+    .blog-item-title {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--neutral-900);
+      line-height: 1.45;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .blog-item-date {
+      font-size: var(--text-xs);
+      color: var(--neutral-400);
+    }
+
+    .sidebar-see-all {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--iznik-600);
+      transition: gap var(--transition-fast), color var(--transition-fast);
+    }
+
+    .sidebar-see-all:hover {
+      color: var(--iznik-800);
+      gap: var(--space-3);
+    }
+
+    /* Hasat deneyimi tanıtım kartı */
+    .sidebar-exp-card { overflow: hidden; }
+
+    .sidebar-exp-img {
+      height: 180px;
+      position: relative;
+    }
+
+    .sidebar-exp-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-slow);
+    }
+
+    .sidebar-exp-card:hover .sidebar-exp-img img {
+      transform: scale(1.06);
+    }
+
+    .sidebar-exp-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(26,46,26,0.20) 0%,
+        rgba(26,46,26,0.75) 100%
+      );
+    }
+
+    .sidebar-exp-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: var(--space-4);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .sidebar-exp-title {
+      font-size: var(--text-base);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.35;
+      margin-bottom: var(--space-3);
+    }
+
+    .sidebar-exp-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: 7px var(--space-4);
+      background: rgba(255,255,255,0.20);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.40);
+      border-radius: var(--radius-full);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      color: var(--white);
+      transition: all var(--transition-fast);
+    }
+
+    .sidebar-exp-btn:hover {
+      background: rgba(255,255,255,0.30);
+      gap: var(--space-3);
+    }
+
+    /* ============================================================
+       MADDE 4.1 — HASAT DENEYİMİ
+       ============================================================ */
+    .hasat-section {
+      background: var(--iznik-900);
+      overflow: hidden;
+    }
+
+    .section-eyebrow {
+      display: inline-block;
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--iznik-300);
+      margin-bottom: var(--space-4);
+    }
+
+    /* Başlık */
+    .hasat-header {
+      padding: var(--space-20) var(--space-5) var(--space-12);
+      text-align: center;
+    }
+
+    .hasat-header-inner {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .hasat-title {
+      font-size: clamp(var(--text-3xl), 5vw, var(--text-5xl));
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: var(--space-5);
+    }
+
+    .hasat-title em {
+      font-style: italic;
+      color: var(--iznik-300);
+    }
+
+    .hasat-subtitle {
+      font-size: var(--text-lg);
+      color: rgba(255,255,255,0.65);
+      line-height: 1.75;
+    }
+
+    /* Adım kartları */
+    .hasat-steps-wrapper {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-5) var(--space-16);
+    }
+
+    .hasat-steps {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+      gap: 0;
+      align-items: start;
+    }
+
+    .hasat-step {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      transition: background var(--transition-normal), border-color var(--transition-normal);
+    }
+
+    .hasat-step:hover {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(255,255,255,0.15);
+    }
+
+    .hasat-step-visual {
+      position: relative;
+    }
+
+    .hasat-step-img {
+      height: 160px;
+    }
+
+    .hasat-step-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-slow);
+      filter: brightness(0.85) saturate(0.9);
+    }
+
+    .hasat-step:hover .hasat-step-img img {
+      transform: scale(1.06);
+      filter: brightness(0.95) saturate(1);
+    }
+
+    .hasat-step-number {
+      position: absolute;
+      top: var(--space-3);
+      right: var(--space-3);
+      font-family: var(--font-serif);
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      color: rgba(255,255,255,0.35);
+      line-height: 1;
+    }
+
+    .hasat-step-content {
+      padding: var(--space-5);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .hasat-step-icon {
+      width: 36px;
+      height: 36px;
+      background: rgba(110,166,108,0.15);
+      border: 1px solid rgba(110,166,108,0.25);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--iznik-300);
+    }
+
+    .hasat-step-icon svg { width: 18px; height: 18px; }
+
+    .hasat-step-title {
+      font-size: var(--text-lg);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .hasat-step-desc {
+      font-size: var(--text-sm);
+      color: rgba(255,255,255,0.60);
+      line-height: 1.7;
+    }
+
+    .hasat-step-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      padding-top: var(--space-2);
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .hasat-step-list li {
+      font-size: var(--text-xs);
+      color: var(--iznik-300);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .hasat-step-list li::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--iznik-400);
+      flex-shrink: 0;
+    }
+
+    /* Adımlar arası konektör */
+    .hasat-step-connector {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 80px;
+      gap: var(--space-1);
+      color: rgba(255,255,255,0.20);
+    }
+
+    .hasat-connector-line {
+      width: 1px;
+      height: 24px;
+      background: rgba(255,255,255,0.12);
+    }
+
+    .hasat-step-connector svg {
+      width: 16px;
+      height: 16px;
+      transform: rotate(0deg);
+    }
+
+    /* Rezervasyon CTA barı */
+    .hasat-cta-bar {
+      background: rgba(255,255,255,0.05);
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .hasat-cta-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: var(--space-8) var(--space-5);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-8);
+      flex-wrap: wrap;
+    }
+
+    .hasat-cta-label {
+      font-size: var(--text-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--iznik-300);
+      margin-bottom: var(--space-1);
+    }
+
+    .hasat-cta-title {
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+
+    .hasat-cta-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-5);
+      flex-shrink: 0;
+    }
+
+    /* Kapasite göstergesi */
+    .hasat-capacity {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .hasat-capacity-dots {
+      display: flex;
+      gap: 5px;
+    }
+
+    .cap-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .cap-dot--full  { background: var(--biga-500); }
+    .cap-dot--avail { background: var(--iznik-400); }
+
+    .hasat-capacity-label {
+      font-size: var(--text-xs);
+      color: rgba(255,255,255,0.50);
+      white-space: nowrap;
+    }
+
+    .hasat-reserve-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: 14px var(--space-8);
+      background: #25D366;
+      color: var(--white);
+      border-radius: var(--radius-full);
+      font-size: var(--text-base);
+      font-weight: 600;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.40);
+      transition: all var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .hasat-reserve-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--white);
+      flex-shrink: 0;
+    }
+
+    .hasat-reserve-btn:hover {
+      background: #1ebe5d;
+      box-shadow: 0 6px 28px rgba(37,211,102,0.55);
+      transform: translateY(-2px);
+    }
+
+    /* Hasat bölümü responsive */
+    @media (max-width: 1024px) {
+      .hasat-steps {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-4);
+      }
+      .hasat-step-connector { display: none; }
+    }
+
+    @media (max-width: 640px) {
+      .hasat-steps { grid-template-columns: 1fr; }
+      .hasat-cta-inner { flex-direction: column; align-items: flex-start; }
+      .hasat-cta-actions { flex-direction: column; align-items: flex-start; width: 100%; }
+      .hasat-reserve-btn { width: 100%; justify-content: center; }
+    }
+
+    /* ============================================================
+       MADDE 4.2 — BÖLGESEL ÜRÜN HİKAYELERİ
+       ============================================================ */
+    .stories-section {
+      background: var(--white);
+    }
+
+    .stories-header {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: var(--space-20) var(--space-5) var(--space-4);
+      text-align: center;
+    }
+
+    .section-eyebrow--dark {
+      color: var(--neutral-500);
+    }
+
+    .stories-main-title {
+      font-size: clamp(var(--text-3xl), 5vw, var(--text-5xl));
+      font-weight: 700;
+      color: var(--neutral-900);
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-top: var(--space-3);
+    }
+
+    .stories-main-title em {
+      font-style: italic;
+      color: var(--iznik-600);
+    }
+
+    /* Hikaye bloğu */
+    .story-block {
+      padding: var(--space-16) 0;
+      border-bottom: 1px solid var(--neutral-100);
+    }
+
+    .story-block:last-child { border-bottom: none; }
+
+    .story-block--iznik { background: var(--white); }
+    .story-block--gonen { background: var(--gonen-50); }
+    .story-block--biga  { background: var(--white); }
+
+    .story-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-5);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-16);
+      align-items: center;
+    }
+
+    /* Görsel sağa geçen varyant */
+    .story-block--reverse .story-inner {
+      direction: rtl;
+    }
+    .story-block--reverse .story-inner > * {
+      direction: ltr;
+    }
+
+    /* Medya alanı */
+    .story-media {
+      position: relative;
+    }
+
+    .story-img {
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+      height: 480px;
+      box-shadow: var(--shadow-xl);
+    }
+
+    .story-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--transition-slow);
+    }
+
+    .story-block:hover .story-img img {
+      transform: scale(1.04);
+    }
+
+    /* Dekoratif arka plan leke */
+    .story-media-accent {
+      position: absolute;
+      width: 70%;
+      height: 70%;
+      border-radius: var(--radius-2xl);
+      z-index: -1;
+    }
+
+    .story-media-accent--iznik {
+      bottom: -20px;
+      right: -20px;
+      background: var(--iznik-100);
+    }
+
+    .story-media-accent--gonen {
+      bottom: -20px;
+      left: -20px;
+      background: var(--gonen-100);
+    }
+
+    .story-media-accent--biga {
+      bottom: -20px;
+      right: -20px;
+      background: var(--biga-100);
+    }
+
+    .story-media-badge {
+      position: absolute;
+      top: var(--space-4);
+      left: var(--space-4);
+    }
+
+    /* İçerik alanı */
+    .story-content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+    }
+
+    .story-region-marker {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      font-size: var(--text-sm);
+      font-weight: 600;
+    }
+
+    .story-region-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .story-region-marker--iznik { color: var(--iznik-600); }
+    .story-region-marker--iznik .story-region-dot { background: var(--iznik-500); box-shadow: 0 0 0 3px var(--iznik-100); }
+
+    .story-region-marker--gonen { color: var(--gonen-600); }
+    .story-region-marker--gonen .story-region-dot { background: var(--gonen-500); box-shadow: 0 0 0 3px var(--gonen-100); }
+
+    .story-region-marker--biga  { color: var(--biga-600); }
+    .story-region-marker--biga  .story-region-dot { background: var(--biga-500); box-shadow: 0 0 0 3px var(--biga-100); }
+
+    .story-title {
+      font-size: clamp(var(--text-2xl), 3.5vw, var(--text-4xl));
+      font-weight: 700;
+      color: var(--neutral-900);
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+    }
+
+    .story-lead {
+      font-size: var(--text-lg);
+      font-weight: 500;
+      color: var(--neutral-700);
+      line-height: 1.65;
+    }
+
+    .story-body {
+      font-size: var(--text-base);
+      color: var(--neutral-600);
+      line-height: 1.8;
+    }
+
+    /* İstatistik üçlüsü */
+    .story-facts {
+      display: flex;
+      gap: var(--space-8);
+      padding: var(--space-5) 0;
+      border-top: 1px solid var(--neutral-200);
+      border-bottom: 1px solid var(--neutral-200);
+    }
+
+    .story-fact {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .story-fact-value {
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      color: var(--neutral-900);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .story-fact-label {
+      font-size: var(--text-xs);
+      color: var(--neutral-500);
+      font-weight: 500;
+    }
+
+    /* Hikaye CTA butonu */
+    .story-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: 13px var(--space-7);
+      border-radius: var(--radius-full);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      transition: all var(--transition-fast);
+      align-self: flex-start;
+      background: #25D366;
+      color: var(--white);
+      box-shadow: 0 2px 12px rgba(37,211,102,0.35);
+    }
+
+    .story-cta svg {
+      width: 16px;
+      height: 16px;
+      fill: var(--white);
+      flex-shrink: 0;
+    }
+
+    .story-cta:hover {
+      background: #1ebe5d;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.50);
+      transform: translateY(-2px);
+    }
+
+    /* Hikaye bölümü responsive */
+    @media (max-width: 900px) {
+      .story-inner {
+        grid-template-columns: 1fr;
+        gap: var(--space-8);
+      }
+      .story-block--reverse .story-inner {
+        direction: ltr;
+      }
+      .story-img { height: 300px; }
+      .story-media-accent { display: none; }
+      .story-cta { width: 100%; justify-content: center; }
+    }
+
+    /* ============================================================
+       MADDE 5.1 — PRE-FOOTER & FOOTER
+       ============================================================ */
+
+    /* Pre-footer CTA */
+    .prefooter {
+      background: linear-gradient(135deg, var(--iznik-900) 0%, var(--iznik-700) 60%, var(--gonen-800) 100%);
+      padding: var(--space-20) var(--space-5);
+    }
+
+    .prefooter-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-12);
+      flex-wrap: wrap;
+    }
+
+    .prefooter-text {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .prefooter-title {
+      font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      margin: var(--space-3) 0 var(--space-4);
+    }
+
+    .prefooter-title em {
+      font-style: italic;
+      color: var(--iznik-200);
+    }
+
+    .prefooter-sub {
+      font-size: var(--text-base);
+      color: rgba(255,255,255,0.65);
+      line-height: 1.7;
+      max-width: 420px;
+    }
+
+    .prefooter-actions {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      flex-shrink: 0;
+      min-width: 220px;
+    }
+
+    .prefooter-btn-wa {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      padding: 14px var(--space-7);
+      background: #25D366;
+      color: var(--white);
+      border-radius: var(--radius-full);
+      font-size: var(--text-base);
+      font-weight: 600;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.40);
+      transition: all var(--transition-fast);
+    }
+
+    .prefooter-btn-wa svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--white);
+    }
+
+    .prefooter-btn-wa:hover {
+      background: #1ebe5d;
+      box-shadow: 0 6px 28px rgba(37,211,102,0.55);
+      transform: translateY(-2px);
+    }
+
+    .prefooter-btn-mail {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      padding: 13px var(--space-7);
+      background: rgba(255,255,255,0.10);
+      backdrop-filter: blur(8px);
+      border: 1.5px solid rgba(255,255,255,0.25);
+      color: var(--white);
+      border-radius: var(--radius-full);
+      font-size: var(--text-base);
+      font-weight: 500;
+      transition: all var(--transition-fast);
+    }
+
+    .prefooter-btn-mail svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .prefooter-btn-mail:hover {
+      background: rgba(255,255,255,0.18);
+      border-color: rgba(255,255,255,0.50);
+      transform: translateY(-2px);
+    }
+
+    /* Ana footer */
+    .footer {
+      background: var(--neutral-900);
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: var(--space-16) var(--space-5);
+      display: grid;
+      grid-template-columns: 1.8fr 1fr 1.2fr 1.4fr;
+      gap: var(--space-12);
+    }
+
+    /* Marka sütunu */
+    .footer-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-5);
+    }
+
+    .footer-logo-mark {
+      width: 34px;
+      height: 34px;
+      background: linear-gradient(135deg, var(--iznik-600), var(--iznik-800));
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+
+    .footer-logo-mark svg { width: 18px; height: 18px; }
+
+    .footer-logo-name {
+      font-size: var(--text-xl);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
+
+    .footer-brand-desc {
+      font-size: var(--text-sm);
+      color: var(--neutral-400);
+      line-height: 1.75;
+      margin-bottom: var(--space-6);
+    }
+
+    .footer-social {
+      display: flex;
+      gap: var(--space-3);
+    }
+
+    .footer-social-link {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-md);
+      background: var(--neutral-800);
+      border: 1px solid var(--neutral-700);
+      color: var(--neutral-400);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition-fast);
+    }
+
+    .footer-social-link svg { width: 16px; height: 16px; }
+
+    .footer-social-link:hover {
+      background: var(--iznik-700);
+      border-color: var(--iznik-600);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    /* Genel sütun */
+    .footer-col-title {
+      font-size: var(--text-xs);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--neutral-400);
+      margin-bottom: var(--space-5);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .footer-link {
+      font-size: var(--text-sm);
+      color: var(--neutral-400);
+      transition: color var(--transition-fast);
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+
+    .footer-link:hover { color: var(--white); }
+
+    .footer-link-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .footer-link-dot--iznik { background: var(--iznik-500); }
+    .footer-link-dot--gonen { background: var(--gonen-500); }
+    .footer-link-dot--biga  { background: var(--biga-500);  }
+
+    /* İletişim sütunu */
+    .footer-contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+      margin-bottom: var(--space-6);
+    }
+
+    .footer-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+    }
+
+    .footer-contact-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--neutral-800);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--neutral-400);
+      flex-shrink: 0;
+    }
+
+    .footer-contact-icon svg { width: 14px; height: 14px; }
+
+    .footer-contact-value {
+      display: block;
+      font-size: var(--text-sm);
+      font-weight: 500;
+      color: var(--neutral-200);
+      transition: color var(--transition-fast);
+      line-height: 1.4;
+    }
+
+    .footer-contact-value--wa:hover { color: #25D366; }
+    .footer-contact-value:not(.footer-contact-value--wa):hover { color: var(--white); }
+
+    .footer-contact-note {
+      display: block;
+      font-size: var(--text-xs);
+      color: var(--neutral-500);
+      margin-top: 2px;
+    }
+
+    /* Bölge renk şeridi */
+    .footer-region-strip {
+      display: flex;
+      height: 4px;
+      border-radius: var(--radius-full);
+      overflow: hidden;
+      gap: 2px;
+    }
+
+    .footer-region-bar {
+      flex: 1;
+      border-radius: var(--radius-full);
+    }
+
+    .footer-region-bar--iznik { background: var(--iznik-500); }
+    .footer-region-bar--gonen { background: var(--gonen-500); }
+    .footer-region-bar--biga  { background: var(--biga-500);  }
+
+    /* Alt bar */
+    .footer-bottom {
+      border-top: 1px solid var(--neutral-800);
+    }
+
+    .footer-bottom-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: var(--space-5) var(--space-5);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+    }
+
+    .footer-copyright {
+      font-size: var(--text-sm);
+      color: var(--neutral-500);
+    }
+
+    .footer-legal {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      font-size: var(--text-sm);
+      color: var(--neutral-600);
+    }
+
+    .footer-legal-link {
+      color: var(--neutral-500);
+      transition: color var(--transition-fast);
+    }
+
+    .footer-legal-link:hover { color: var(--neutral-300); }
+
+    /* Footer responsive */
+    @media (max-width: 1024px) {
+      .footer-inner {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-10);
+      }
+      .footer-col--brand {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .footer-inner { grid-template-columns: 1fr; gap: var(--space-8); }
+      .prefooter-inner { flex-direction: column; }
+      .prefooter-actions { width: 100%; }
+      .footer-bottom-inner { flex-direction: column; align-items: flex-start; }
+    }
+
     /* Hero mobil */
     @media (max-width: 768px) {
       .hero-stats {
@@ -1442,22 +2977,1054 @@
                MADDE 3.2 — ORTA SÜTUN (gelecek)
                ====================================================== -->
           <main class="col-center" aria-label="Ürünler ve içerik akışı">
-            <!-- Madde 3.2 buraya gelecek -->
+
+            <!-- Akış başlığı -->
+            <div class="feed-header">
+              <h2 class="feed-header-title font-serif">Doğadan Sofranıza</h2>
+              <p class="feed-header-sub">Toprağını tanıdığımız, üreticisini bildiğimiz ürünler</p>
+            </div>
+
+            <!-- ── ÜRÜN 1: İZNİK ZEYTİNYAĞI ──────────────────────── -->
+            <article class="product-card card" id="zeytinyagi">
+              <div class="img-placeholder product-img">
+                <img
+                  src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=800&q=80&auto=format&fit=crop&crop=center"
+                  alt="İznik soğuk sıkım zeytinyağı — kadim ağaçlardan"
+                  loading="lazy"
+                />
+                <div class="product-img-overlay" aria-hidden="true"></div>
+                <div class="product-img-badges">
+                  <span class="badge badge-iznik">İznik · Bursa</span>
+                  <span class="product-season-badge">
+                    <span aria-hidden="true">🫒</span> Hasat 2024
+                  </span>
+                </div>
+              </div>
+
+              <div class="card-body product-body">
+                <div class="product-meta">
+                  <span class="product-category text-iznik">Zeytinyağı</span>
+                  <span class="product-dots" aria-hidden="true">·</span>
+                  <span class="product-origin">Soğuk Sıkım · Natürel Sızma</span>
+                </div>
+
+                <h3 class="product-title font-serif">İznik Zeytinyağı</h3>
+
+                <p class="product-story">
+                  100 yılı aşkın ömrü olan ağaçlardan yapılan bu zeytinyağı, her
+                  damlasında onlarca kışın sabrını taşır. Birinci hasat zeytinleri
+                  soğuk sıkım yöntemiyle işlenir; ne ısı ne katkı — sadece toprağın
+                  özü.
+                </p>
+
+                <!-- Detay çipleri -->
+                <div class="product-tags">
+                  <span class="product-tag">🌡 Soğuk Sıkım</span>
+                  <span class="product-tag">🏺 Kadim Ağaçlar</span>
+                  <span class="product-tag">✅ Katkısız</span>
+                </div>
+
+                <!-- Ambalaj seçenekleri -->
+                <div class="product-options">
+                  <span class="product-options-label">Ambalaj:</span>
+                  <button class="product-option-btn active" type="button">500 ml</button>
+                  <button class="product-option-btn" type="button">1 lt</button>
+                  <button class="product-option-btn" type="button">5 lt (teneke)</button>
+                </div>
+
+                <div class="product-footer">
+                  <a
+                    href="https://wa.me/905XXXXXXXXX?text=Merhaba%2C%20İznik%20Zeytinyağı%20sipariş%20etmek%20istiyorum."
+                    class="btn-product-whatsapp"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 0C5.374 0 0 5.373 0 12.004c0 2.117.554 4.099 1.523 5.82L0 24l6.335-1.498A11.955 11.955 0 0 0 12.004 24C18.634 24 24 18.627 24 12.004 24 5.373 18.634 0 12.004 0zm0 21.818a9.816 9.816 0 0 1-5.007-1.371l-.359-.213-3.722.879.938-3.619-.234-.371A9.799 9.799 0 0 1 2.182 12c0-5.415 4.408-9.818 9.822-9.818 5.415 0 9.818 4.403 9.818 9.818 0 5.415-4.403 9.818-9.818 9.818z"/></svg>
+                    WhatsApp ile Sipariş Ver
+                  </a>
+                  <button class="product-share-btn" type="button" aria-label="Paylaş">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <!-- ── ÜRÜN 2: İZNİK SOFRALİK ZEYTİN ─────────────────── -->
+            <article class="product-card card" id="sofralik-zeytin">
+              <div class="img-placeholder product-img">
+                <img
+                  src="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?w=800&q=80&auto=format&fit=crop"
+                  alt="İznik sofralık zeytin — dalından taze"
+                  loading="lazy"
+                />
+                <div class="product-img-overlay" aria-hidden="true"></div>
+                <div class="product-img-badges">
+                  <span class="badge badge-iznik">İznik · Bursa</span>
+                  <span class="product-season-badge">Sınırlı Stok</span>
+                </div>
+              </div>
+
+              <div class="card-body product-body">
+                <div class="product-meta">
+                  <span class="product-category text-iznik">Sofralık Zeytin</span>
+                  <span class="product-dots" aria-hidden="true">·</span>
+                  <span class="product-origin">Yerli Cins · Geleneksel Salamura</span>
+                </div>
+
+                <h3 class="product-title font-serif">İznik Sofralık Zeytini</h3>
+
+                <p class="product-story">
+                  Hasat günü el ile toplanan zeytinler, eski usul taş küplerde
+                  salamura edilir. Ekşiliği dengeli, eti dolgun, kabuğu narin —
+                  sabah kahvaltı sofralarının vazgeçilmezi.
+                </p>
+
+                <div class="product-tags">
+                  <span class="product-tag">🫙 Taş Küp Salamura</span>
+                  <span class="product-tag">✋ El Hasatı</span>
+                  <span class="product-tag">🌿 Doğal</span>
+                </div>
+
+                <div class="product-options">
+                  <span class="product-options-label">Ambalaj:</span>
+                  <button class="product-option-btn active" type="button">500 gr</button>
+                  <button class="product-option-btn" type="button">1 kg</button>
+                  <button class="product-option-btn" type="button">3 kg (kova)</button>
+                </div>
+
+                <div class="product-footer">
+                  <a
+                    href="https://wa.me/905XXXXXXXXX?text=Merhaba%2C%20İznik%20Sofralık%20Zeytin%20sipariş%20etmek%20istiyorum."
+                    class="btn-product-whatsapp"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 0C5.374 0 0 5.373 0 12.004c0 2.117.554 4.099 1.523 5.82L0 24l6.335-1.498A11.955 11.955 0 0 0 12.004 24C18.634 24 24 18.627 24 12.004 24 5.373 18.634 0 12.004 0zm0 21.818a9.816 9.816 0 0 1-5.007-1.371l-.359-.213-3.722.879.938-3.619-.234-.371A9.799 9.799 0 0 1 2.182 12c0-5.415 4.408-9.818 9.822-9.818 5.415 0 9.818 4.403 9.818 9.818 0 5.415-4.403 9.818-9.818 9.818z"/></svg>
+                    WhatsApp ile Sipariş Ver
+                  </a>
+                  <button class="product-share-btn" type="button" aria-label="Paylaş">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <!-- ── ÜRÜN 3: GÖNEN KÖY PEYNİRİ & EKMEĞİ ───────────── -->
+            <article class="product-card card" id="peynir-ekmek">
+              <div class="img-placeholder product-img product-img--duo">
+                <img
+                  src="https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=800&q=80&auto=format&fit=crop"
+                  alt="Gönen köy peyniri ve köy ekmeği"
+                  loading="lazy"
+                />
+                <div class="product-img-overlay product-img-overlay--gonen" aria-hidden="true"></div>
+                <div class="product-img-badges">
+                  <span class="badge badge-gonen">Gönen · Balıkesir</span>
+                </div>
+              </div>
+
+              <div class="card-body product-body">
+                <div class="product-meta">
+                  <span class="product-category text-gonen">Süt Ürünleri & Fırın</span>
+                  <span class="product-dots" aria-hidden="true">·</span>
+                  <span class="product-origin">Köy Yapımı · Geleneksel</span>
+                </div>
+
+                <h3 class="product-title font-serif">Gönen Köy Peyniri & Ekmeği</h3>
+
+                <p class="product-story">
+                  Gönen'in çiçekli yaylalarında otlayan ineklerin sütünden yapılan
+                  peynir, odun ateşinde sabahın erken saatlerinde pişirilen köy
+                  ekmeğiyle buluşunca ortaya çıkan lezzet — tarif edilemez, sadece
+                  yaşanır.
+                </p>
+
+                <div class="product-tags">
+                  <span class="product-tag product-tag--gonen">🥛 Çiğ Süt</span>
+                  <span class="product-tag product-tag--gonen">🔥 Odun Fırını</span>
+                  <span class="product-tag product-tag--gonen">🌾 Tam Buğday</span>
+                </div>
+
+                <!-- İkili seçenek -->
+                <div class="product-duo-options">
+                  <div class="product-duo-item">
+                    <span class="product-duo-label">Peynir</span>
+                    <div class="product-option-row">
+                      <button class="product-option-btn product-option-btn--gonen active" type="button">500 gr</button>
+                      <button class="product-option-btn product-option-btn--gonen" type="button">1 kg</button>
+                    </div>
+                  </div>
+                  <div class="product-duo-item">
+                    <span class="product-duo-label">Ekmek</span>
+                    <div class="product-option-row">
+                      <button class="product-option-btn product-option-btn--gonen active" type="button">1 adet</button>
+                      <button class="product-option-btn product-option-btn--gonen" type="button">3 adet</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="product-footer">
+                  <a
+                    href="https://wa.me/905XXXXXXXXX?text=Merhaba%2C%20Gönen%20Köy%20Peyniri%20ve%20Ekmeği%20sipariş%20etmek%20istiyorum."
+                    class="btn-product-whatsapp btn-product-whatsapp--gonen"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 0C5.374 0 0 5.373 0 12.004c0 2.117.554 4.099 1.523 5.82L0 24l6.335-1.498A11.955 11.955 0 0 0 12.004 24C18.634 24 24 18.627 24 12.004 24 5.373 18.634 0 12.004 0zm0 21.818a9.816 9.816 0 0 1-5.007-1.371l-.359-.213-3.722.879.938-3.619-.234-.371A9.799 9.799 0 0 1 2.182 12c0-5.415 4.408-9.818 9.822-9.818 5.415 0 9.818 4.403 9.818 9.818 0 5.415-4.403 9.818-9.818 9.818z"/></svg>
+                    WhatsApp ile Sipariş Ver
+                  </a>
+                  <button class="product-share-btn" type="button" aria-label="Paylaş">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                  </button>
+                </div>
+              </div>
+            </article>
+
+            <!-- ── ÜRÜN 4: BİGA KÖY SALÇASI ───────────────────────── -->
+            <article class="product-card card" id="salca">
+              <div class="img-placeholder product-img">
+                <img
+                  src="https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?w=800&q=80&auto=format&fit=crop"
+                  alt="Biga köy salçası — güneşte kurutulmuş kırmızı biber"
+                  loading="lazy"
+                />
+                <div class="product-img-overlay product-img-overlay--biga" aria-hidden="true"></div>
+                <div class="product-img-badges">
+                  <span class="badge badge-biga">Biga · Çanakkale</span>
+                  <span class="product-season-badge product-season-badge--biga">Güneşte Kurutulmuş</span>
+                </div>
+              </div>
+
+              <div class="card-body product-body">
+                <div class="product-meta">
+                  <span class="product-category text-biga">Domates & Biber Salçası</span>
+                  <span class="product-dots" aria-hidden="true">·</span>
+                  <span class="product-origin">Geleneksel · Tuz & Güneş</span>
+                </div>
+
+                <h3 class="product-title font-serif">Biga Köy Salçası</h3>
+
+                <p class="product-story">
+                  Çanakkale'nin kırmızı topraklarında yetişen dolgun biberler ve
+                  etli domatesler, Ağustos güneşinin altında günlerce kurutulur.
+                  Biga usulü taş dibekte dövülerek hazırlanan bu salça; kışın
+                  sofranıza yaz sıcaklığını taşır.
+                </p>
+
+                <div class="product-tags">
+                  <span class="product-tag product-tag--biga">☀️ Güneşte Kurutma</span>
+                  <span class="product-tag product-tag--biga">🌶 Dolgun Biber</span>
+                  <span class="product-tag product-tag--biga">🧂 Sadece Tuz</span>
+                </div>
+
+                <div class="product-options">
+                  <span class="product-options-label">Tür & Boyut:</span>
+                  <button class="product-option-btn product-option-btn--biga active" type="button">Biber · 700 gr</button>
+                  <button class="product-option-btn product-option-btn--biga" type="button">Domates · 700 gr</button>
+                  <button class="product-option-btn product-option-btn--biga" type="button">Karışık · 2'li set</button>
+                </div>
+
+                <div class="product-footer">
+                  <a
+                    href="https://wa.me/905XXXXXXXXX?text=Merhaba%2C%20Biga%20Köy%20Salçası%20sipariş%20etmek%20istiyorum."
+                    class="btn-product-whatsapp btn-product-whatsapp--biga"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 0C5.374 0 0 5.373 0 12.004c0 2.117.554 4.099 1.523 5.82L0 24l6.335-1.498A11.955 11.955 0 0 0 12.004 24C18.634 24 24 18.627 24 12.004 24 5.373 18.634 0 12.004 0zm0 21.818a9.816 9.816 0 0 1-5.007-1.371l-.359-.213-3.722.879.938-3.619-.234-.371A9.799 9.799 0 0 1 2.182 12c0-5.415 4.408-9.818 9.822-9.818 5.415 0 9.818 4.403 9.818 9.818 0 5.415-4.403 9.818-9.818 9.818z"/></svg>
+                    WhatsApp ile Sipariş Ver
+                  </a>
+                  <button class="product-share-btn" type="button" aria-label="Paylaş">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                  </button>
+                </div>
+              </div>
+            </article>
+
           </main>
 
           <!-- ======================================================
                MADDE 3.3 — SAĞ SÜTUN (gelecek)
                ====================================================== -->
           <aside class="col-right" aria-label="Doğal yaşam rehberi">
-            <!-- Madde 3.3 buraya gelecek -->
+
+            <!-- WhatsApp topluluk kartı -->
+            <div class="card sidebar-wa-card">
+              <div class="card-body sidebar-wa-body">
+                <div class="sidebar-wa-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 0C5.374 0 0 5.373 0 12.004c0 2.117.554 4.099 1.523 5.82L0 24l6.335-1.498A11.955 11.955 0 0 0 12.004 24C18.634 24 24 18.627 24 12.004 24 5.373 18.634 0 12.004 0zm0 21.818a9.816 9.816 0 0 1-5.007-1.371l-.359-.213-3.722.879.938-3.619-.234-.371A9.799 9.799 0 0 1 2.182 12c0-5.415 4.408-9.818 9.822-9.818 5.415 0 9.818 4.403 9.818 9.818 0 5.415-4.403 9.818-9.818 9.818z"/></svg>
+                </div>
+                <h3 class="sidebar-wa-title font-serif">Hasat Haberdar</h3>
+                <p class="sidebar-wa-desc">
+                  Yeni hasat, sınırlı stok ve sezon kampanyalarından ilk siz haberdar olun.
+                </p>
+                <a
+                  href="https://wa.me/905XXXXXXXXX?text=Merhaba%2C%20hasat%20haberlerinden%20haberdar%20olmak%20istiyorum."
+                  class="sidebar-wa-btn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 0C5.374 0 0 5.373 0 12.004c0 2.117.554 4.099 1.523 5.82L0 24l6.335-1.498A11.955 11.955 0 0 0 12.004 24C18.634 24 24 18.627 24 12.004 24 5.373 18.634 0 12.004 0zm0 21.818a9.816 9.816 0 0 1-5.007-1.371l-.359-.213-3.722.879.938-3.619-.234-.371A9.799 9.799 0 0 1 2.182 12c0-5.415 4.408-9.818 9.822-9.818 5.415 0 9.818 4.403 9.818 9.818 0 5.415-4.403 9.818-9.818 9.818z"/></svg>
+                  WhatsApp'a Katıl
+                </a>
+              </div>
+            </div>
+
+            <!-- Hasat takvimi kartı -->
+            <div class="card sidebar-calendar-card">
+              <div class="card-body">
+                <h3 class="sidebar-section-title">Hasat Takvimi</h3>
+                <ul class="harvest-list">
+                  <li class="harvest-item harvest-item--active">
+                    <div class="harvest-month">
+                      <span class="harvest-month-name">Ekim</span>
+                      <span class="harvest-month-year">2024</span>
+                    </div>
+                    <div class="harvest-info">
+                      <span class="harvest-product">İznik Zeytini</span>
+                      <span class="harvest-status harvest-status--active">
+                        <span class="harvest-pulse" aria-hidden="true"></span>
+                        Hasat Açık
+                      </span>
+                    </div>
+                  </li>
+                  <li class="harvest-item harvest-item--active">
+                    <div class="harvest-month">
+                      <span class="harvest-month-name">Kas.</span>
+                      <span class="harvest-month-year">2024</span>
+                    </div>
+                    <div class="harvest-info">
+                      <span class="harvest-product">Zeytinyağı</span>
+                      <span class="harvest-status harvest-status--active">
+                        <span class="harvest-pulse" aria-hidden="true"></span>
+                        Üretimde
+                      </span>
+                    </div>
+                  </li>
+                  <li class="harvest-item">
+                    <div class="harvest-month">
+                      <span class="harvest-month-name">Ağu.</span>
+                      <span class="harvest-month-year">2025</span>
+                    </div>
+                    <div class="harvest-info">
+                      <span class="harvest-product">Biga Salçası</span>
+                      <span class="harvest-status harvest-status--soon">Yakında</span>
+                    </div>
+                  </li>
+                  <li class="harvest-item">
+                    <div class="harvest-month">
+                      <span class="harvest-month-name">Yıl</span>
+                      <span class="harvest-month-year">boyu</span>
+                    </div>
+                    <div class="harvest-info">
+                      <span class="harvest-product">Gönen Peyniri</span>
+                      <span class="harvest-status harvest-status--year">Sürekli</span>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Doğal Yaşam Rehberi — blog listesi -->
+            <div class="card sidebar-blog-card" id="blog">
+              <div class="card-body">
+                <h3 class="sidebar-section-title">Doğal Yaşam Rehberi</h3>
+
+                <div class="blog-list">
+
+                  <a href="#" class="blog-item">
+                    <div class="img-placeholder blog-item-img">
+                      <img
+                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=75&auto=format&fit=crop"
+                        alt="Zeytinyağı nasıl seçilir?"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div class="blog-item-text">
+                      <span class="blog-item-tag">Rehber</span>
+                      <p class="blog-item-title">İyi zeytinyağı nasıl anlaşılır?</p>
+                      <span class="blog-item-date">5 dk okuma</span>
+                    </div>
+                  </a>
+
+                  <a href="#" class="blog-item">
+                    <div class="img-placeholder blog-item-img">
+                      <img
+                        src="https://images.unsplash.com/photo-1464454709131-ffd692591ee5?w=200&q=75&auto=format&fit=crop"
+                        alt="Sabah kahvaltısı kültürü"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div class="blog-item-text">
+                      <span class="blog-item-tag">Yaşam</span>
+                      <p class="blog-item-title">Köy kahvaltısının sırrı nedir?</p>
+                      <span class="blog-item-date">3 dk okuma</span>
+                    </div>
+                  </a>
+
+                  <a href="#" class="blog-item">
+                    <div class="img-placeholder blog-item-img">
+                      <img
+                        src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=200&q=75&auto=format&fit=crop"
+                        alt="Zeytin hasatı deneyimi"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div class="blog-item-text">
+                      <span class="blog-item-tag">Deneyim</span>
+                      <p class="blog-item-title">Dalından zeytin koparmak nasıl bir his?</p>
+                      <span class="blog-item-date">7 dk okuma</span>
+                    </div>
+                  </a>
+
+                  <a href="#" class="blog-item">
+                    <div class="img-placeholder blog-item-img">
+                      <img
+                        src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=200&q=75&auto=format&fit=crop"
+                        alt="Salça tarifi"
+                        loading="lazy"
+                      />
+                    </div>
+                    <div class="blog-item-text">
+                      <span class="blog-item-tag">Tarif</span>
+                      <p class="blog-item-title">Ev usulü köy salçasının incelikleri</p>
+                      <span class="blog-item-date">4 dk okuma</span>
+                    </div>
+                  </a>
+
+                </div><!-- /blog-list -->
+
+                <a href="#blog" class="sidebar-see-all">
+                  Tüm yazıları gör
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+
+              </div>
+            </div>
+
+            <!-- Hasat deneyimi tanıtım kartı -->
+            <div class="card sidebar-exp-card">
+              <div class="img-placeholder sidebar-exp-img">
+                <img
+                  src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&q=80&auto=format&fit=crop"
+                  alt="Zeytin bahçesinde gün batımı"
+                  loading="lazy"
+                />
+                <div class="sidebar-exp-overlay" aria-hidden="true"></div>
+                <div class="sidebar-exp-content">
+                  <span class="badge badge-iznik" style="margin-bottom: 8px;">Deneyim</span>
+                  <p class="sidebar-exp-title font-serif">Dalından Zeytin Koparma Seansları</p>
+                  <a
+                    href="https://wa.me/905XXXXXXXXX?text=Merhaba%2C%20hasat%20deneyimi%20hakkında%20bilgi%20almak%20istiyorum."
+                    class="sidebar-exp-btn"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Yer Ayırt
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+
           </aside>
 
         </div><!-- /three-col-grid -->
       </div><!-- /main-content -->
     </section><!-- /main-section -->
 
-    <!-- Madde 4.x: Özel bölümler buraya gelecek -->
-    <!-- Madde 5.1: Footer buraya gelecek -->
+    <!-- ============================================================
+         MADDE 4.1 — HASAT DENEYİMİ BÖLÜMÜ
+         ============================================================ -->
+    <section class="hasat-section" id="hasat" aria-label="Hasat deneyimi">
+
+      <!-- Bölüm başlığı -->
+      <div class="hasat-header">
+        <div class="hasat-header-inner">
+          <span class="section-eyebrow">Dalından Sofranıza</span>
+          <h2 class="hasat-title font-serif">
+            Zeytinden Yağa:<br />
+            <em>Toprağın Dönüşümü</em>
+          </h2>
+          <p class="hasat-subtitle">
+            İznik'in kadim bahçelerinde bir günü bizimle geçirin. Sabah erken
+            saatlerde zeytin dallarını elinizle sallayın, akşam sofraya kendi
+            yaptığınız zeytinyağıyla oturun.
+          </p>
+        </div>
+      </div>
+
+      <!-- Süreç adımları -->
+      <div class="hasat-steps-wrapper">
+        <div class="hasat-steps">
+
+          <div class="hasat-step">
+            <div class="hasat-step-visual">
+              <div class="img-placeholder hasat-step-img">
+                <img
+                  src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=500&q=80&auto=format&fit=crop&crop=center"
+                  alt="Zeytin ağacı — İznik bahçesi"
+                  loading="lazy"
+                />
+              </div>
+              <div class="hasat-step-number" aria-hidden="true">01</div>
+            </div>
+            <div class="hasat-step-content">
+              <div class="hasat-step-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8C8 10 5.9 16.17 3.82 19.82A2 2 0 0 0 5.5 22a2 2 0 0 0 1.73-1l.5-.87C9 17.5 11 16 14 16c4 0 5.5-2 5.5-2"/><path d="M3 3c0 4 2 7 5 9"/></svg>
+              </div>
+              <h3 class="hasat-step-title font-serif">El Hasatı</h3>
+              <p class="hasat-step-desc">
+                Sabahın ilk ışığında 100 yılı aşkın zeytin ağaçlarının dallarını
+                elinizle sallayın. Her zeytin, toprağa zarar vermeden nazikçe
+                toplanır.
+              </p>
+              <ul class="hasat-step-list">
+                <li>Sabah 07:00 başlangıç</li>
+                <li>Geleneksel bez çuvallar</li>
+                <li>Rehber eşliğinde</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="hasat-step-connector" aria-hidden="true">
+            <div class="hasat-connector-line"></div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+
+          <div class="hasat-step">
+            <div class="hasat-step-visual">
+              <div class="img-placeholder hasat-step-img">
+                <img
+                  src="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?w=500&q=80&auto=format&fit=crop"
+                  alt="Zeytinlerin yıkanması ve elenmesi"
+                  loading="lazy"
+                />
+              </div>
+              <div class="hasat-step-number" aria-hidden="true">02</div>
+            </div>
+            <div class="hasat-step-content">
+              <div class="hasat-step-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6"/><path d="M12 22v-6"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="M2 12h6"/><path d="M22 12h-6"/><path d="m4.93 19.07 4.24-4.24"/><path d="m14.83 9.17 4.24-4.24"/></svg>
+              </div>
+              <h3 class="hasat-step-title font-serif">Eleme & Yıkama</h3>
+              <p class="hasat-step-desc">
+                Toplanan zeytinler yaprak ve dal artıklarından arındırılır, doğal
+                kaynak suyuyla iyice yıkanır. Bu adım yağın berraklığını belirler.
+              </p>
+              <ul class="hasat-step-list">
+                <li>Doğal kaynak suyu</li>
+                <li>El eleme geleneği</li>
+                <li>Sıfır kimyasal</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="hasat-step-connector" aria-hidden="true">
+            <div class="hasat-connector-line"></div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+
+          <div class="hasat-step">
+            <div class="hasat-step-visual">
+              <div class="img-placeholder hasat-step-img">
+                <img
+                  src="https://images.unsplash.com/photo-1559181567-c3190ca9d222?w=500&q=80&auto=format&fit=crop"
+                  alt="Soğuk sıkım zeytinyağı presi"
+                  loading="lazy"
+                />
+              </div>
+              <div class="hasat-step-number" aria-hidden="true">03</div>
+            </div>
+            <div class="hasat-step-content">
+              <div class="hasat-step-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
+              </div>
+              <h3 class="hasat-step-title font-serif">Soğuk Sıkım</h3>
+              <p class="hasat-step-desc">
+                Zeytinler 27°C'yi geçmeyen sıcaklıkta ilk sıkımdan geçirilir.
+                Bu yöntem antioksidanları ve aromaları korur. Sonuç: natürel
+                sızma, birinci hasat zeytinyağı.
+              </p>
+              <ul class="hasat-step-list">
+                <li>Max 27°C işlem</li>
+                <li>Birinci hasat</li>
+                <li>Düşük asitlik</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="hasat-step-connector" aria-hidden="true">
+            <div class="hasat-connector-line"></div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </div>
+
+          <div class="hasat-step">
+            <div class="hasat-step-visual">
+              <div class="img-placeholder hasat-step-img">
+                <img
+                  src="https://images.unsplash.com/photo-1510130387422-82bed34b37e9?w=500&q=80&auto=format&fit=crop"
+                  alt="Zeytinyağı şişeleme ve tatma"
+                  loading="lazy"
+                />
+              </div>
+              <div class="hasat-step-number" aria-hidden="true">04</div>
+            </div>
+            <div class="hasat-step-content">
+              <div class="hasat-step-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+              </div>
+              <h3 class="hasat-step-title font-serif">Tatma & Götürme</h3>
+              <p class="hasat-step-desc">
+                Günün sonunda taze sıkım yağı tadın, dilerseniz o gün üretilen
+                şişeyi evinize götürün. Her şişe, o günün hasatından geliyor.
+              </p>
+              <ul class="hasat-step-list">
+                <li>Profesyonel tatma seansı</li>
+                <li>Kişisel şişe hediyesi</li>
+                <li>Sertifika & hasat notu</li>
+              </ul>
+            </div>
+          </div>
+
+        </div><!-- /hasat-steps -->
+      </div>
+
+      <!-- Rezervasyon CTA -->
+      <div class="hasat-cta-bar">
+        <div class="hasat-cta-inner">
+          <div class="hasat-cta-text">
+            <p class="hasat-cta-label">2024 Sezonu Açık</p>
+            <p class="hasat-cta-title font-serif">Seanslarda yer kalmadan rezervasyon yapın</p>
+          </div>
+          <div class="hasat-cta-actions">
+            <div class="hasat-capacity">
+              <div class="hasat-capacity-dots" aria-label="Kapasite göstergesi">
+                <span class="cap-dot cap-dot--full" title="Dolu"></span>
+                <span class="cap-dot cap-dot--full" title="Dolu"></span>
+                <span class="cap-dot cap-dot--full" title="Dolu"></span>
+                <span class="cap-dot cap-dot--avail" title="Boş"></span>
+                <span class="cap-dot cap-dot--avail" title="Boş"></span>
+              </div>
+              <span class="hasat-capacity-label">Son 2 yer kaldı</span>
+            </div>
+            <a
+              href="https://wa.me/905XXXXXXXXX?text=Merhaba%2C%20hasat%20deneyimi%20seansı%20için%20yer%20ayırtmak%20istiyorum."
+              class="hasat-reserve-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 0C5.374 0 0 5.373 0 12.004c0 2.117.554 4.099 1.523 5.82L0 24l6.335-1.498A11.955 11.955 0 0 0 12.004 24C18.634 24 24 18.627 24 12.004 24 5.373 18.634 0 12.004 0zm0 21.818a9.816 9.816 0 0 1-5.007-1.371l-.359-.213-3.722.879.938-3.619-.234-.371A9.799 9.799 0 0 1 2.182 12c0-5.415 4.408-9.818 9.822-9.818 5.415 0 9.818 4.403 9.818 9.818 0 5.415-4.403 9.818-9.818 9.818z"/></svg>
+              WhatsApp ile Yer Ayırt
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </section><!-- /hasat-section -->
+
+    <!-- ============================================================
+         MADDE 4.2 — BÖLGESEL ÜRÜN HİKAYELERİ
+         ============================================================ -->
+    <section class="stories-section" id="hikayemiz" aria-label="Bölgesel ürün hikayeleri">
+
+      <div class="stories-header">
+        <span class="section-eyebrow section-eyebrow--dark">Toprağın Üç Rengi</span>
+        <h2 class="stories-main-title font-serif">
+          Her Bölgenin Bir <em>Sırrı</em> Var
+        </h2>
+      </div>
+
+      <!-- ── HİKAYE 1: İZNİK — görsel solda ──────────────────── -->
+      <article class="story-block story-block--iznik" aria-label="İznik zeytini hikayesi">
+        <div class="story-inner">
+
+          <div class="story-media">
+            <div class="img-placeholder story-img">
+              <img
+                src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=900&q=85&auto=format&fit=crop&crop=center"
+                alt="İznik'te yüzyıllık zeytin ağaçları"
+                loading="lazy"
+              />
+            </div>
+            <div class="story-media-accent story-media-accent--iznik" aria-hidden="true"></div>
+            <div class="story-media-badge">
+              <span class="badge badge-iznik">İznik · Bursa</span>
+            </div>
+          </div>
+
+          <div class="story-content">
+            <div class="story-region-marker story-region-marker--iznik" aria-hidden="true">
+              <div class="story-region-dot"></div>
+              <span>Marmara'nın Kalbi</span>
+            </div>
+            <h3 class="story-title font-serif">
+              100 Yılı Aşkın<br />Zeytin Ağaçları
+            </h3>
+            <p class="story-lead">
+              İznik Gölü'nün kıyısında, Osmanlı döneminden kalan taş duvarlı
+              bahçelerde büyüyen bu ağaçlar, bugün dördüncü kuşağın ellerinde
+              meyve veriyor.
+            </p>
+            <p class="story-body">
+              Her ağacın kendine özgü bir karakteri var. Kimi yıl erken olgunlaşır,
+              kimi yıl geç — ama hepsi aynı topraktan, aynı sudan beslenir.
+              Sertliği dengeli, meyvemsi aromalı, rengi yemyeşil bu zeytinyağı;
+              tadına bakan herkesin "bu başka" dediği cinsten.
+            </p>
+
+            <div class="story-facts">
+              <div class="story-fact">
+                <span class="story-fact-value font-serif">100+</span>
+                <span class="story-fact-label">Yıllık ağaç</span>
+              </div>
+              <div class="story-fact">
+                <span class="story-fact-value font-serif">≤0.3%</span>
+                <span class="story-fact-label">Serbest asit</span>
+              </div>
+              <div class="story-fact">
+                <span class="story-fact-value font-serif">4.</span>
+                <span class="story-fact-label">Nesil üretici</span>
+              </div>
+            </div>
+
+            <a
+              href="https://wa.me/905XXXXXXXXX?text=Merhaba%2C%20İznik%20zeytinyağı%20hakkında%20bilgi%20almak%20istiyorum."
+              class="story-cta story-cta--iznik"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 0C5.374 0 0 5.373 0 12.004c0 2.117.554 4.099 1.523 5.82L0 24l6.335-1.498A11.955 11.955 0 0 0 12.004 24C18.634 24 24 18.627 24 12.004 24 5.373 18.634 0 12.004 0zm0 21.818a9.816 9.816 0 0 1-5.007-1.371l-.359-.213-3.722.879.938-3.619-.234-.371A9.799 9.799 0 0 1 2.182 12c0-5.415 4.408-9.818 9.822-9.818 5.415 0 9.818 4.403 9.818 9.818 0 5.415-4.403 9.818-9.818 9.818z"/></svg>
+              İznik Zeytinyağı Sipariş Et
+            </a>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- ── HİKAYE 2: GÖNEN — görsel sağda ───────────────────── -->
+      <article class="story-block story-block--gonen story-block--reverse" aria-label="Gönen peyniri hikayesi">
+        <div class="story-inner">
+
+          <div class="story-media">
+            <div class="img-placeholder story-img">
+              <img
+                src="https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=900&q=85&auto=format&fit=crop"
+                alt="Gönen köy peyniri — çiğ süt ve geleneksel üretim"
+                loading="lazy"
+              />
+            </div>
+            <div class="story-media-accent story-media-accent--gonen" aria-hidden="true"></div>
+            <div class="story-media-badge">
+              <span class="badge badge-gonen">Gönen · Balıkesir</span>
+            </div>
+          </div>
+
+          <div class="story-content">
+            <div class="story-region-marker story-region-marker--gonen" aria-hidden="true">
+              <div class="story-region-dot"></div>
+              <span>Ege'nin Kapısı</span>
+            </div>
+            <h3 class="story-title font-serif">
+              Çiğ Sütten<br />Sabır Gerektiren Peynir
+            </h3>
+            <p class="story-lead">
+              Gönen'in çiçekli yaylalarında sabah sağılan inek sütü, akşama
+              kadar soğutulmadan işlenir. Hız yoktur burada — sadece sabır ve
+              el emeği.
+            </p>
+            <p class="story-body">
+              Tuzlama oranı düşük, eti dolgun, kendine has bir ekşiliği olan
+              Gönen peyniri; endüstriyel peynirlere hiç benzemiyor. Odun ateşinde
+              pişirilen köy ekmeğiyle buluşunca, tarif etmek mümkün olmayan bir
+              bütünlük ortaya çıkıyor.
+            </p>
+
+            <div class="story-facts">
+              <div class="story-fact">
+                <span class="story-fact-value font-serif">Çiğ</span>
+                <span class="story-fact-label">İnek sütü</span>
+              </div>
+              <div class="story-fact">
+                <span class="story-fact-value font-serif">48s</span>
+                <span class="story-fact-label">Olgunlaşma</span>
+              </div>
+              <div class="story-fact">
+                <span class="story-fact-value font-serif">Odun</span>
+                <span class="story-fact-label">Ateşi fırın</span>
+              </div>
+            </div>
+
+            <a
+              href="https://wa.me/905XXXXXXXXX?text=Merhaba%2C%20Gönen%20köy%20peyniri%20ve%20ekmeği%20hakkında%20bilgi%20almak%20istiyorum."
+              class="story-cta story-cta--gonen"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 0C5.374 0 0 5.373 0 12.004c0 2.117.554 4.099 1.523 5.82L0 24l6.335-1.498A11.955 11.955 0 0 0 12.004 24C18.634 24 24 18.627 24 12.004 24 5.373 18.634 0 12.004 0zm0 21.818a9.816 9.816 0 0 1-5.007-1.371l-.359-.213-3.722.879.938-3.619-.234-.371A9.799 9.799 0 0 1 2.182 12c0-5.415 4.408-9.818 9.822-9.818 5.415 0 9.818 4.403 9.818 9.818 0 5.415-4.403 9.818-9.818 9.818z"/></svg>
+              Gönen Peyniri & Ekmeği Sipariş Et
+            </a>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- ── HİKAYE 3: BİGA — görsel solda ────────────────────── -->
+      <article class="story-block story-block--biga" aria-label="Biga salçası hikayesi">
+        <div class="story-inner">
+
+          <div class="story-media">
+            <div class="img-placeholder story-img">
+              <img
+                src="https://images.unsplash.com/photo-1592417817098-8fd3d9eb14a5?w=900&q=85&auto=format&fit=crop"
+                alt="Biga'da kırmızı biberler güneşte kurutuluyor"
+                loading="lazy"
+              />
+            </div>
+            <div class="story-media-accent story-media-accent--biga" aria-hidden="true"></div>
+            <div class="story-media-badge">
+              <span class="badge badge-biga">Biga · Çanakkale</span>
+            </div>
+          </div>
+
+          <div class="story-content">
+            <div class="story-region-marker story-region-marker--biga" aria-hidden="true">
+              <div class="story-region-dot"></div>
+              <span>Çanakkale'nin Kırmızı Toprağı</span>
+            </div>
+            <h3 class="story-title font-serif">
+              Ağustos Güneşinin<br />Kırmızı Mirası
+            </h3>
+            <p class="story-lead">
+              Çanakkale'nin mineral açısından zengin kırmızı topraklarında
+              yetişen dolgun biberler; Ağustos güneşinin altında günlerce
+              kurutulur, taş dibekte dövülerek geleneksel salçaya dönüşür.
+            </p>
+            <p class="story-body">
+              Fabrika salçasındaki sertlik ve yapay asidite burada yok. Sadece
+              güneş, tuz ve sabır. Rengi canlı, kokusu derin, kıvamı tam —
+              kışın bir kaşık bu salça; sofranıza yazın sıcaklığını taşır.
+            </p>
+
+            <div class="story-facts">
+              <div class="story-fact">
+                <span class="story-fact-value font-serif">7+</span>
+                <span class="story-fact-label">Gün güneşte</span>
+              </div>
+              <div class="story-fact">
+                <span class="story-fact-value font-serif">Taş</span>
+                <span class="story-fact-label">Dibek dövme</span>
+              </div>
+              <div class="story-fact">
+                <span class="story-fact-value font-serif">2</span>
+                <span class="story-fact-label">Malzeme (biber+tuz)</span>
+              </div>
+            </div>
+
+            <a
+              href="https://wa.me/905XXXXXXXXX?text=Merhaba%2C%20Biga%20köy%20salçası%20hakkında%20bilgi%20almak%20istiyorum."
+              class="story-cta story-cta--biga"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 0C5.374 0 0 5.373 0 12.004c0 2.117.554 4.099 1.523 5.82L0 24l6.335-1.498A11.955 11.955 0 0 0 12.004 24C18.634 24 24 18.627 24 12.004 24 5.373 18.634 0 12.004 0zm0 21.818a9.816 9.816 0 0 1-5.007-1.371l-.359-.213-3.722.879.938-3.619-.234-.371A9.799 9.799 0 0 1 2.182 12c0-5.415 4.408-9.818 9.822-9.818 5.415 0 9.818 4.403 9.818 9.818 0 5.415-4.403 9.818-9.818 9.818z"/></svg>
+              Biga Köy Salçası Sipariş Et
+            </a>
+          </div>
+
+        </div>
+      </article>
+
+    </section><!-- /stories-section -->
+
+    <!-- ============================================================
+         MADDE 5.1 — FOOTER
+         ============================================================ -->
+
+    <!-- Pre-footer CTA -->
+    <div class="prefooter" id="iletisim">
+      <div class="prefooter-inner">
+        <div class="prefooter-text">
+          <span class="section-eyebrow" style="color: var(--iznik-300);">Sipariş & İletişim</span>
+          <h2 class="prefooter-title font-serif">
+            Sofranız için en iyisini<br />
+            <em>hak ediyorsunuz.</em>
+          </h2>
+          <p class="prefooter-sub">
+            Sorularınız için, özel sipariş için ya da sadece toprağın
+            tadını konuşmak için bize ulaşın.
+          </p>
+        </div>
+        <div class="prefooter-actions">
+          <a
+            href="https://wa.me/905XXXXXXXXX?text=Merhaba%2C%20Piann%20ürünleri%20hakkında%20bilgi%20almak%20istiyorum."
+            class="prefooter-btn-wa"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 0C5.374 0 0 5.373 0 12.004c0 2.117.554 4.099 1.523 5.82L0 24l6.335-1.498A11.955 11.955 0 0 0 12.004 24C18.634 24 24 18.627 24 12.004 24 5.373 18.634 0 12.004 0zm0 21.818a9.816 9.816 0 0 1-5.007-1.371l-.359-.213-3.722.879.938-3.619-.234-.371A9.799 9.799 0 0 1 2.182 12c0-5.415 4.408-9.818 9.822-9.818 5.415 0 9.818 4.403 9.818 9.818 0 5.415-4.403 9.818-9.818 9.818z"/></svg>
+            WhatsApp ile Yaz
+          </a>
+          <a href="mailto:merhaba@piann.com" class="prefooter-btn-mail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            E-posta Gönder
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ana footer -->
+    <footer class="footer" role="contentinfo">
+      <div class="footer-inner">
+
+        <!-- Sütun 1: Marka -->
+        <div class="footer-col footer-col--brand">
+          <a href="/" class="footer-logo" aria-label="Piann ana sayfa">
+            <div class="footer-logo-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C9 6 6 9 6 13a6 6 0 0 0 12 0c0-4-3-7-6-11z" fill="currentColor"/>
+                <path d="M12 13c0-4 2-7 4-10" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <span class="footer-logo-name font-serif">piann</span>
+          </a>
+          <p class="footer-brand-desc">
+            Üç neslin emeği, üç bölgenin coğrafyası. İznik'ten zeytin,
+            Gönen'den peynir, Biga'dan salça — doğrudan üreticiden sofranıza.
+          </p>
+          <div class="footer-social">
+            <a href="#" class="footer-social-link" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" class="footer-social-link" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a
+              href="https://wa.me/905XXXXXXXXX"
+              class="footer-social-link"
+              aria-label="WhatsApp"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 0C5.374 0 0 5.373 0 12.004c0 2.117.554 4.099 1.523 5.82L0 24l6.335-1.498A11.955 11.955 0 0 0 12.004 24C18.634 24 24 18.627 24 12.004 24 5.373 18.634 0 12.004 0zm0 21.818a9.816 9.816 0 0 1-5.007-1.371l-.359-.213-3.722.879.938-3.619-.234-.371A9.799 9.799 0 0 1 2.182 12c0-5.415 4.408-9.818 9.822-9.818 5.415 0 9.818 4.403 9.818 9.818 0 5.415-4.403 9.818-9.818 9.818z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Sütun 2: Hızlı Linkler -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Keşfedin</h4>
+          <ul class="footer-links">
+            <li><a href="#urunler" class="footer-link">Ürünlerimiz</a></li>
+            <li><a href="#hasat" class="footer-link">Hasat Deneyimi</a></li>
+            <li><a href="#hikayemiz" class="footer-link">Hikayemiz</a></li>
+            <li><a href="#blog" class="footer-link">Doğal Yaşam Rehberi</a></li>
+            <li><a href="#iletisim" class="footer-link">İletişim</a></li>
+          </ul>
+        </div>
+
+        <!-- Sütun 3: Ürünler -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">Ürünlerimiz</h4>
+          <ul class="footer-links">
+            <li>
+              <a href="#zeytinyagi" class="footer-link footer-link--with-dot">
+                <span class="footer-link-dot footer-link-dot--iznik" aria-hidden="true"></span>
+                İznik Zeytinyağı
+              </a>
+            </li>
+            <li>
+              <a href="#sofralik-zeytin" class="footer-link footer-link--with-dot">
+                <span class="footer-link-dot footer-link-dot--iznik" aria-hidden="true"></span>
+                İznik Sofralık Zeytin
+              </a>
+            </li>
+            <li>
+              <a href="#peynir-ekmek" class="footer-link footer-link--with-dot">
+                <span class="footer-link-dot footer-link-dot--gonen" aria-hidden="true"></span>
+                Gönen Köy Peyniri
+              </a>
+            </li>
+            <li>
+              <a href="#peynir-ekmek" class="footer-link footer-link--with-dot">
+                <span class="footer-link-dot footer-link-dot--gonen" aria-hidden="true"></span>
+                Gönen Köy Ekmeği
+              </a>
+            </li>
+            <li>
+              <a href="#salca" class="footer-link footer-link--with-dot">
+                <span class="footer-link-dot footer-link-dot--biga" aria-hidden="true"></span>
+                Biga Köy Salçası
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Sütun 4: İletişim -->
+        <div class="footer-col">
+          <h4 class="footer-col-title">İletişim</h4>
+          <ul class="footer-contact-list">
+            <li class="footer-contact-item">
+              <div class="footer-contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 0C5.374 0 0 5.373 0 12.004c0 2.117.554 4.099 1.523 5.82L0 24l6.335-1.498A11.955 11.955 0 0 0 12.004 24C18.634 24 24 18.627 24 12.004 24 5.373 18.634 0 12.004 0zm0 21.818a9.816 9.816 0 0 1-5.007-1.371l-.359-.213-3.722.879.938-3.619-.234-.371A9.799 9.799 0 0 1 2.182 12c0-5.415 4.408-9.818 9.822-9.818 5.415 0 9.818 4.403 9.818 9.818 0 5.415-4.403 9.818-9.818 9.818z"/></svg>
+              </div>
+              <div>
+                <a
+                  href="https://wa.me/905XXXXXXXXX"
+                  class="footer-contact-value footer-contact-value--wa"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  +90 5XX XXX XX XX
+                </a>
+                <span class="footer-contact-note">WhatsApp · 09:00–20:00</span>
+              </div>
+            </li>
+            <li class="footer-contact-item">
+              <div class="footer-contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+              <div>
+                <a href="mailto:merhaba@piann.com" class="footer-contact-value">merhaba@piann.com</a>
+                <span class="footer-contact-note">24 saat içinde yanıt</span>
+              </div>
+            </li>
+            <li class="footer-contact-item">
+              <div class="footer-contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <div>
+                <span class="footer-contact-value">İznik · Gönen · Biga</span>
+                <span class="footer-contact-note">Bursa · Balıkesir · Çanakkale</span>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Bölge renk şeridi -->
+          <div class="footer-region-strip" aria-hidden="true">
+            <div class="footer-region-bar footer-region-bar--iznik" title="İznik"></div>
+            <div class="footer-region-bar footer-region-bar--gonen" title="Gönen"></div>
+            <div class="footer-region-bar footer-region-bar--biga" title="Biga"></div>
+          </div>
+        </div>
+
+      </div><!-- /footer-inner -->
+
+      <!-- Alt bar -->
+      <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+          <p class="footer-copyright">
+            © 2024 Piann · Toprağın Hafızası, Sofranızın Lezzeti
+          </p>
+          <p class="footer-legal">
+            <a href="#" class="footer-legal-link">Gizlilik Politikası</a>
+            <span aria-hidden="true">·</span>
+            <a href="#" class="footer-legal-link">Kullanım Şartları</a>
+          </p>
+        </div>
+      </div>
+
+    </footer>
   </div>
 
   <!-- ============================================================
@@ -1484,6 +4051,16 @@
       link.addEventListener('click', () => {
         mobileMenu.classList.remove('open');
         hamburgerBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Ambalaj seçenek butonları — aktif seçim
+    document.querySelectorAll('.product-options, .product-option-row').forEach(group => {
+      group.querySelectorAll('.product-option-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          group.querySelectorAll('.product-option-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+        });
       });
     });
 
